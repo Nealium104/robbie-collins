@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Nav from "@/components/nav";
+import Nav from '@/src/components/Nav'
 
 
 export default function Teaching () {
