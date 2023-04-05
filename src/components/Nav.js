@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import { BsFillSunFill } from 'react-icons/bs'
+import { useEffect } from 'react'
 
 export default function Nav () {
+
+
     return (
         <div className="navbar bg-base-100">
   <div className="flex-1">
@@ -8,6 +12,9 @@ export default function Nav () {
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1">
+        <button className='px-2'>
+            <BsFillSunFill />
+        </button>
       <li><Link href='/bio/'>Bio</Link></li>
       <li tabIndex={0}>
         <a>
