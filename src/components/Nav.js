@@ -8,8 +8,10 @@ export default function Nav () {
     return (
         <div className="navbar bg-base-100">
   <div className="flex-1 px-6">
+    <div className='flex items-center btn btn-ghost'>
     <Link href="/"><GiTrumpetFlag className='text-xl'/></Link>
-    <Link href="/" className="btn btn-ghost normal-case text-2xl text-primary font-bold"> Robbie Collins</Link>
+    <Link href="/" className="normal-case text-2xl text-primary font-bold px-4"> Robbie Collins</Link>
+    </div>
   </div>
   <div className="flex-none">
     <ul className="menu menu-horizontal px-1">
