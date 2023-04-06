@@ -20,7 +20,7 @@ export default function ContactForm () {
                  </div>
                <div>
                     <span>Message:</span>
-                    <textarea className="textarea textarea-bordered block" placeholder="Type your message here"></textarea>
+                    <textarea className="textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
                 </div>
         </div>
         </div>
