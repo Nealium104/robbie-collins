@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-spring/parallax": "^9.7.2",
+    "@react-spring/web": "^9.7.2",
     "@sendgrid/mail": "^7.7.0",
     "daisyui": "^2.51.5",
     "next": "13.2.4",

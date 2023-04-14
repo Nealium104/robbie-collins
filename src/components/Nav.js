@@ -13,7 +13,7 @@ export default function Nav () {
 
     return (
   <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-transparent">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
           <div className='md:hidden flex items-center'>
