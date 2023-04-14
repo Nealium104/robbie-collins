@@ -24,29 +24,24 @@ export default function Home() {
       </Head>
       <Nav />
       <div className={styles.wrapper}>
-        <div className={styles.header}>
-        <div>
-          <animated.h1 style={{...springs}} className="text-9xl bg-black/75 p-4">
+        <div className={styles.header} style={{ position: 'relative' }}>
+          <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl">
             hi, i'm robbie
           </animated.h1>
-        </div>
-        <Image
-            className={styles.background}
+          <Image
+            className="absolute top-0 left-0 w-full h-full object-cover object-center"
             src="/withBackgroundColorCorrected.webp"
             alt="Milky Way"
-            width={4639}
-            height={3093}
+            layout="fill"
           />
-          </div>
-        <div className='bg-neutral flex justify-center'>
+        </div>
+        <div className='bg-neutral flex justify-center'>          
           <p className='w-3/4'>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos
             aperiam perferendis est earum minus ea dolore consectetur ut
             consequatur molestias facilis natus quae quisquam, obcaecati assumenda
             perspiciatis tenetur officiis odit.
           </p>
-          <Image 
-          />
         </div>
         <Footer />
       </div>
