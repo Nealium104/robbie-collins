@@ -5,6 +5,7 @@ import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import Footer from '@/components/Footer';
 import { useSpring, animated, config } from '@react-spring/web';
+import Link from 'next/link';
 
 export default function Home() {
   const springs = useSpring({
@@ -13,6 +14,12 @@ export default function Home() {
     config: { duration: 1000},
   })
 
+  const learnSprings = useSpring({
+    from: {opacity: 0},
+    to: {opacity:1},
+    config: {duration:2000},
+    delay: 1500,
+  })
 
   return (
     <>
@@ -25,9 +32,14 @@ export default function Home() {
       <Nav />
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
-          <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl">
-            hi, i'm robbie
-          </animated.h1>
+          <div className="flex flex-col items-center">
+            <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl">
+              hi, i'm robbie
+            </animated.h1>
+            <animated.div style={{...learnSprings}} className="z-10">
+              <Link href="/bio/" className="btn relative z-10 w-1/8 -bottom-20 bg-neutral/50">Learn More</Link>
+            </animated.div>
+          </div>
           <Image
             className="absolute top-0 left-0 w-full h-full object-cover object-center"
             src="/withBackgroundColorCorrected.webp"
@@ -35,6 +47,7 @@ export default function Home() {
             layout="fill"
           />
         </div>
+        
         <div className='bg-neutral flex justify-center'>          
           <p className='w-3/4'>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos
