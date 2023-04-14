@@ -38,7 +38,7 @@ export default function Nav () {
               Music
               <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
             </a>
-            <ul className="p-2 bg-base-100">
+            <ul className="p-2 bg-base-100/75 z-10">
               <li><Link href="/recordings/" className='hover:text-primary'>Recordings</Link></li>
               <li><Link href="/teaching/" className='hover:text-primary'>Teaching</Link></li>
             </ul>

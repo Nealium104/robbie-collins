@@ -29,7 +29,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Nav />
+      <Nav className='z-10' />
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
@@ -45,6 +45,8 @@ export default function Home() {
             src="/withBackgroundColorCorrected.webp"
             alt="Milky Way"
             layout="fill"
+            blurDataURL="/backgroundBlur.jpg"
+            placeholder="blur"
           />
         </div>
         

@@ -1,7 +1,7 @@
 export default function Footer () {
     return (
     <>
-        <footer className="bg-neutral">
+        <footer className="bg-transparent">
             <div className="items-center">
                 <p className="w-screen text-center">Copyright © 2023 - All right reserved</p>
             </div> 
