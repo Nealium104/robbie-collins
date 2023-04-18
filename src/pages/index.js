@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import styles from '@/styles/components/Index.module.css'
 import Nav from '../components/Nav';
 import Footer from '@/components/Footer';
@@ -50,21 +50,17 @@ export default function Home() {
             priority
           />
         </div>
-        <div className=''>      
-          <div className='border-2 m-4 rounded-lg bg-neutral/50'>
-            <p className='text-center p-4'>
+        <div className='md:flex md:flex-row-reverse justify-center'>      
+          <div className='border-2 border-primary m-4 rounded-lg bg-neutral/25'>
+            <p className='text-center p-4 max-w-screen-md'>
             Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
             I aim to inspire others through music. In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
             involvement through performance and teaching and contact me directly through the form on the contact page.
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn bg-black/50 focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
+              <Link className='btn bg-primary focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
-          <Image
-          src="/facingFront.JPG"
-          width={450}
-          height={800} />  
         </div>
         <Footer />
       </div>
