@@ -45,18 +45,27 @@ export default function Home() {
             src="/withBackgroundColorCorrected.webp"
             alt="Milky Way"
             layout="fill"
+            objectFit="cover"
             blurDataURL="/backgroundBlur.jpg"
             placeholder="blur"
+            priority
           />
         </div>
-        
-        <div className='bg-neutral flex justify-center'>          
-          <p className='w-3/4'>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quos
-            aperiam perferendis est earum minus ea dolore consectetur ut
-            consequatur molestias facilis natus quae quisquam, obcaecati assumenda
-            perspiciatis tenetur officiis odit.
-          </p>
+        <div className='bg-neutral md:flex justify-center'>      
+          <div className='my-auto mx-6 md:items-center border-2 rounded-lg'>
+            <p className='text-center py-4 md:flex md:flex-col-reverse md:px-6'>
+            Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
+            I aim to inspire others through music. In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
+            involvement through performance and teaching and contact me directly through the form on the contact page.
+            </p>
+            <div className="flex justify-center py-4">
+              <Link className='btn bg-black/50' href="/bio/">Learn More</Link>
+            </div>
+          </div>
+          <Image
+          src="/facingFront.JPG"
+          width={450}
+          height={800} />  
         </div>
         <Footer />
       </div>

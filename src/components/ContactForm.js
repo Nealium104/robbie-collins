@@ -19,9 +19,18 @@ export default function ContactForm () {
     <>
     <div className="flex justify-center py-3">
             <div className="card w-96 bg-primary shadow-2xl items-center">
-        <figure className="px-10 pt-10">
-            <img src="/contact.webp/" alt="Shoes" className="rounded-xl" />
-        </figure>
+            <div>
+                <figure className="px-10 pt-10">
+                    <Image 
+                    src="/contact.webp" 
+                    alt="Shoes" 
+                    className="rounded-xl"
+                    width = {2000}
+                    height = {3000}
+                    priority
+                    />
+                </figure>
+            </div>
         <div className="card-body items-center text-center">
             <h2 className="card-title">Contact me here:</h2>
                 <form action="post" onSubmit={handleOnSubmit}>
