@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '@/styles/components/Index.module.css'
 import Nav from '../components/Nav';
-import Hero from '../components/Hero';
 import Footer from '@/components/Footer';
 import { useSpring, animated, config } from '@react-spring/web';
 import Link from 'next/link';
@@ -51,15 +50,15 @@ export default function Home() {
             priority
           />
         </div>
-        <div className='bg-neutral md:flex justify-center'>      
-          <div className='my-auto mx-6 md:items-center border-2 rounded-lg'>
-            <p className='text-center py-4 md:flex md:flex-col-reverse md:px-6'>
+        <div className=''>      
+          <div className='border-2 m-4 rounded-lg bg-neutral/50'>
+            <p className='text-center p-4'>
             Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
             I aim to inspire others through music. In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
             involvement through performance and teaching and contact me directly through the form on the contact page.
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn bg-black/50' href="/bio/">Learn More</Link>
+              <Link className='btn bg-black/50 focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
           <Image
@@ -72,20 +71,3 @@ export default function Home() {
     </>
   );
 }
-
-
-{/* 
-  If the parallax thing doesn't work, this will make the galaxy image the background for the whole thing
-  <div style={{
-  zIndex: -1,
-  position: "fixed",
-  width: "100vw",
-  height: "100vh",
-  }}>
-    <Image 
-    src="/backgroundBlue.webp"
-    alt="Milky Way"
-    layout="fill"
-    objectFit="cover"
-    ></Image>
-  </div> */}
