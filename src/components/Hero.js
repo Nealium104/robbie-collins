@@ -8,10 +8,10 @@ export default function Hero () {
                 backgroundImage: `url("robbie.webp")` 
                 }}>
             <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content text-center text-neutral-content">
+            <div className="hero-content text-center text-neutral-content bg-black/50">
                 <div className="max-w-md">
-                <h1 className="mb-5 text-5xl font-bold">hi, i'm robbie</h1>
-                <p className="mb-5">Welcome to the webpage of Robert Collins, a distinguished trumpet performer, educator, and organizer, known for his work with the Knoxville Symphony Orchestra, International Trumpet Guild, and the University of Kentucky. Explore his remarkable journey through performance, education, and mentorship in the trumpet community.</p>
+                <h1 className="mb-5 text-5xl font-bold text-primary">hi, i'm robbie</h1>
+                <p className="mb-5 text-2xl">Welcome to the webpage of Robert Collins, a distinguished trumpet performer, educator, and organizer, known for his work with the Knoxville Symphony Orchestra, International Trumpet Guild, and the University of Kentucky. Explore his remarkable journey through performance, education, and mentorship in the trumpet community.</p>
                 <Link href="bio" className="btn btn-primary">Learn More</Link>
                 </div>
             </div>
