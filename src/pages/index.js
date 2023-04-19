@@ -50,11 +50,13 @@ export default function Home() {
             priority
           />
         </div>
-        <div className='md:flex md:flex-row-reverse justify-center'>      
-          <div className='border-2 border-primary m-4 rounded-lg bg-neutral/25'>
-            <p className='text-center p-4 max-w-screen-md'>
+        <div className='md:flex md:flex-row-reverse justify-center m-5 md:text-xl'>      
+          <div className='border-4 border-primary m-5 rounded-lg bg-neutral/25'>
+            <p className='text-center p-10 max-w-screen-md'>
             Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
-            I aim to inspire others through music. In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
+            I aim to inspire others through music.
+            </p>
+            <p className='text-center p-4 max-w-screen-md'>In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
             involvement through performance and teaching and contact me directly through the form on the contact page.
             </p>
             <div className="flex justify-center py-4">
