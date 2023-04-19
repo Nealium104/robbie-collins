@@ -13,6 +13,7 @@ export default function Teaching () {
                         src="/robbie4-5.jpg"
                         width={400}
                         height={500}
+                        priority
                     />
                     <div>
                         <p className="py-5 mx-6">There is nothing I enjoy more than teaching music. I have always wanted to be a teacher and I wake up every day excited for the opportunity to teach again. Expressing musical concepts to students seems to come naturally to me, and I have always felt comfortable explaining ideas to others.</p>
