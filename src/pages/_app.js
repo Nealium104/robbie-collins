@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import { themeChange } from "theme-change"
 import { Roboto } from 'next/font/google'
 
-const roboto = Roboto({ subsets: ['latin'], weight: ['400'] })
+const roboto = Roboto({ subsets: ['latin'], weight: ['400', '100'] })
 
 export default function App({ Component, pageProps }) {
   const themeValues = [
