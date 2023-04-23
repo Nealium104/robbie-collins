@@ -33,7 +33,7 @@ export default function Home() {
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
             <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl">
-              hi, i'm robbie
+              Hi, I'm Robbie
             </animated.h1>
             <animated.div style={{...learnSprings}} className="z-10">
               <Link href="/bio/" className="btn relative z-10 w-1/8 -bottom-20 bg-neutral/50">Learn More</Link>
