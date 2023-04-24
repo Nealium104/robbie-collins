@@ -32,11 +32,11 @@ export default function Home() {
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
-            <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl">
+            <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl font-thin">
               Hi, I'm Robbie
             </animated.h1>
             <animated.div style={{...learnSprings}} className="z-10">
-              <Link href="/bio/" className="btn relative z-10 w-1/8 -bottom-20 bg-neutral/50">Learn More</Link>
+              <Link href="/bio/" className="btn relative z-10 w-1/8 -bottom-20 bg-neutral/50 font-thin">Learn More</Link>
             </animated.div>
           </div>
           <Image
@@ -51,7 +51,7 @@ export default function Home() {
           />
         </div>
         <div className='md:flex md:flex-row-reverse justify-center m-5 md:text-xl'>      
-          <div className='border-4 border-primary m-5 rounded-lg bg-neutral/25'>
+          <div className='rounded-lg m-5 bg-neutral'>
             <p className='text-center p-10 max-w-screen-md'>
             Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
             I aim to inspire others through music.
@@ -60,7 +60,7 @@ export default function Home() {
             involvement through performance and teaching and contact me directly through the form on the contact page.
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn bg-primary focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
+              <Link className='btn bg-primary rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
         </div>
