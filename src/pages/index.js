@@ -22,12 +22,7 @@ export default function Home() {
 
   return (
     <>
-      <Head>
-        <title>Robbie Collins</title>
-        <meta name="description" content="Robbie Collins" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+
       <Nav className='z-10' />
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
@@ -60,7 +55,7 @@ export default function Home() {
             involvement through performance and teaching and contact me directly through the form on the contact page.
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn bg-primary rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
+              <Link className='btn bg-primary text-black rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
         </div>
