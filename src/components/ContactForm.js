@@ -1,30 +1,39 @@
 import Image from "next/legacy/image"
+import { useState } from "react";
 
 export default function ContactForm () {
-    async function handleOnSubmit (e) {
+    const [showSuccess, setShowSuccess] = useState(false)
+
+    async function handleOnSubmit(e) {
         e.preventDefault();
-        const formData = {}
+        const formData = {};
         Array.from(e.currentTarget.elements).forEach(field => {
-            if (!field.name) return;
-            formData[field.name] = field.value;
-        })
-        fetch('/api/mail', {
-            method: 'post',
-            body: JSON.stringify(formData)
-        })
-        console.log(formData)
-    }
+          if (!field.name) return;
+          formData[field.name] = field.value;
+        });
+        const response = await fetch('/api/mail', {
+          method: 'post',
+          body: JSON.stringify(formData),
+        });
+    
+        if (response.ok) {
+          setShowSuccess(true);
+        } else {
+          // Handle the error message
+        }
+        console.log(formData);
+      }
 
     return (
     <>
         <div className="flex justify-center py-3">
-            <div className="card w-96 bg-primary/50 shadow-2xl items-center">
+            <div className="bg-primary/50 shadow-2xl items-center">
                 <div>
                     <figure className="px-10 pt-10">
                         <Image 
                         src="/contact.webp" 
                         alt="Shoes" 
-                        className="rounded-xl"
+                        className=""
                         width = {400}
                         height = {600}
                         priority
@@ -48,6 +57,9 @@ export default function ContactForm () {
                             </div>
                             <button className="btn btn-neutral my-4">Submit</button>
                         </form>
+                    {showSuccess && (
+                        <div className="alert alert-success mt-4">Success! Your message has been sent!</div>
+                    )}
                 </div>
             </div>
         </div>
