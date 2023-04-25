@@ -29,7 +29,7 @@ export default function ContactForm () {
         <div className="flex justify-center py-3">
             <div className="bg-primary/50 shadow-2xl items-center">
                 <div>
-                    <figure className="px-10 pt-10">
+                    <figure className="px-10 pt-10 text-center">
                         <Image 
                         src="/contact.webp" 
                         alt="Shoes" 
