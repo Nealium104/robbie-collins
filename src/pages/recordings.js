@@ -22,7 +22,7 @@ export default function Recordings () {
                     </div>
                     <div className="m-4 bg-neutral flex flex-col">
                         <div className="relative w-full pb-[56%] h-0">
-                            <iframe className="absolute w-full h-full" src="https://www.youtube.com/embed/U5GmkNsCe5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                            <iframe className="absolute w-full h-full" src="https://www.youtube.com/embed/U5GmkNsCe5E" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                         </div>
                         <span className="text-center w-full font-light">This video is a submission for the graduate solo division of the National Trumpet Competition.</span>
                     </div>
