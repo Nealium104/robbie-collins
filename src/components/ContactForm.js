@@ -54,12 +54,13 @@ export default function ContactForm () {
                             <div>
                                 <label htmlFor="message">Message:</label>
                                 <textarea name="message" className="textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
-                            </div>
+                            </div>        
+                            {showSuccess && (
+                                <div className="alert alert-success mt-4">Success! Your message has been sent!</div>
+                            )}
                             <button className="btn btn-neutral my-4">Submit</button>
                         </form>
-                    {showSuccess && (
-                        <div className="alert alert-success mt-4">Success! Your message has been sent!</div>
-                    )}
+            
                 </div>
             </div>
         </div>

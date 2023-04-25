@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Image from "next/legacy/image";
 import styles from '@/styles/components/Index.module.css'
 import Nav from '../components/Nav';
@@ -22,7 +21,6 @@ export default function Home() {
 
   return (
     <>
-
       <Nav className='z-10' />
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>

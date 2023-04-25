@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Nav from '../components/Nav'
+import Footer from "@/components/Footer";
 
 export default function Recordings () {
     return (
@@ -27,6 +27,7 @@ export default function Recordings () {
                         <span className="text-center w-full font-light">This video is a submission for the graduate solo division of the National Trumpet Competition.</span>
                     </div>
                 </div>
+            <Footer />
         </>
     )
 }
