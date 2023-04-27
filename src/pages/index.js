@@ -25,11 +25,11 @@ export default function Home() {
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
-            <animated.h1 style={{...springs, zIndex: 10}} className="text-4xl bg-black/75 p-4 lg:text-9xl font-thin">
+            <animated.h1 style={{...springs, zIndex: 10}} className="text-6xl bg-black/75 p-4 lg:text-9xl font-thin">
               Hi, I'm Robbie
             </animated.h1>
             <animated.div style={{...learnSprings}} className="z-10">
-              <Link href="/bio/" className="btn relative z-10 w-1/8 -bottom-20 bg-neutral/50 font-thin">Learn More</Link>
+              <Link href="/bio/" className="btn text-base font-normal bg-primary text-black relative z-10 w-1/8 -bottom-20 bg-neutral/50 font-thin hover:text-white hover:border-1 hover:border-white">Learn More</Link>
             </animated.div>
           </div>
           <Image
@@ -53,7 +53,7 @@ export default function Home() {
             involvement through performance and teaching. And if you need to contact me for lessons or just to reach out, you can contact me <Link className="text-purple-400 underline" href="/contact/">here!</Link>
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn bg-primary text-black rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
+              <Link className='btn text-base font-normal bg-primary text-black rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
         </div>
