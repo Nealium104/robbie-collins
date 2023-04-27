@@ -73,7 +73,7 @@ export default function Bio () {
                 <div className="bg-black/25 p-10 md:flex md:items-center">
                     <div className="md:w-1/2">
                         <Image 
-                            src="/carousel/baroqueTrumpetReduced.JPG"
+                            src="/carousel/baroqueTrumpetReduced.jpg"
                             alt="Robbie facing front with a baroque trumpet"
                             width={400}
                             height={400}
