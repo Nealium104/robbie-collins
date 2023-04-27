@@ -7,7 +7,7 @@ export default function Footer () {
     <>
         <footer className="bg-transparent">
             <div className="items-center">
-                <p className="w-screen text-center">Copyright © 2023 - All rights reserved</p>
+                <p className="font-thin w-screen text-center">Copyright © 2023 - All rights reserved</p>
             </div> 
             <div className="flex text-center w-screen justify-center py-5"> 
                 <a className="px-3" href="https://www.facebook.com/robbie.collins.9026"><BsFacebook className='hover:text-primary' /></a>

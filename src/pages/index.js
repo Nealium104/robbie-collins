@@ -45,12 +45,12 @@ export default function Home() {
         </div>
         <div className='md:flex md:flex-row-reverse justify-center m-5 md:text-xl'>      
           <div className='rounded-lg m-5 bg-neutral'>
-            <p className='text-center p-10 max-w-screen-md'>
+            <p className='font-thin text-center p-10 max-w-screen-md'>
             Hello, I'm Robert Collins, a passionate trumpeter, educator, and organizer. With a diverse background in performance, education, and community involvement, 
             I aim to inspire others through music.
             </p>
-            <p className='text-center p-4 max-w-screen-md'>In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
-            involvement through performance and teaching and contact me directly through the form on the contact page.
+            <p className='font-thin text-center p-4 max-w-screen-md'>In my bio, you'll learn about my experiences, academic journey, and the mentors who've shaped my growth. You can also learn about my musical
+            involvement through performance and teaching. And if you need to contact me for lessons or just to reach out, you can contact me <Link className="text-purple-400 underline" href="/contact/">here!</Link>
             </p>
             <div className="flex justify-center py-4">
               <Link className='btn bg-primary text-black rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>

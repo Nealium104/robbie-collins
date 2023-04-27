@@ -21,9 +21,9 @@ export default function Nav () {
               <IoMenu />
             </button>
           </div>
-          <div className='flex items-center btn btn-ghost'>
-          <Link href="/"><GiTrumpetFlag className='text-xl'/></Link>
-          <Link href="/" className="normal-case text-2xl text-primary font-bold px-4">Robbie Collins</Link>
+          <div className='flex btn btn-ghost'>
+            <Link href="/"><GiTrumpetFlag className='text-xl'/></Link>
+            <Link href="/" className="normal-case text-2xl text-primary font-bold px-4">Robert Collins</Link>
           </div>
       </div>
       {/* Secondary Nav */}
@@ -32,28 +32,28 @@ export default function Nav () {
             <button className='px-2'>
                 <BsFillSunFill className='hover:text-primary' />
             </button>
-          <li><Link href='/bio/' className='hover:text-primary'>Bio</Link></li>
+          <li><Link href='/bio/' className='font-thin hover:text-primary'>Bio</Link></li>
           <li tabIndex={0}>
-            <a className='hover:text-primary'>
+            <a className='font-thin hover:text-primary'>
               Music
               <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
             </a>
-            <ul className="p-2 bg-base-100/75 z-10">
-              <li><Link href="/recordings/" className='hover:text-primary py-2'>Recordings</Link></li>
-              <li><Link href="/teaching/" className='hover:text-primary py-2'>Teaching</Link></li>
+            <ul className="p-2 bg-black/25 z-10">
+              <li><Link href="/recordings/" className='font-thin hover:text-primary py-2'>Recordings</Link></li>
+              <li><Link href="/teaching/" className='font-thin hover:text-primary py-2'>Teaching</Link></li>
             </ul>
           </li>
-          <li><Link href="/contact/" className='hover:text-primary'>Contact</Link></li>
+          <li><Link href="/contact/" className='font-thin hover:text-primary'>Contact</Link></li>
         </ul>
       </div>
     </div>
     {/* Mobile Menu */}
       <div className={`flex flex-col items-center mobile-menu ${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden`}>
-        <Link href='/' className='block py-4 px-4 text-sm hover:text-primary text-center'>Home</Link>
-        <Link href='/bio/' className='block py-4 px-4 text-sm hover:text-primary text-center'>Bio</Link>
-        <Link href='/recordings/' className='block py-4 px-4 text-sm hover:text-primary text-center'>Recordings</Link>
-        <Link href='/teaching/' className='block py-4 px-4 text-sm hover:text-primary text-center'>Teaching</Link>
-        <Link href='/contact/' className='block py-4 px-4 text-sm hover:text-primary text-center'>Contact</Link>
+        <Link href='/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Home</Link>
+        <Link href='/bio/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Bio</Link>
+        <Link href='/recordings/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Recordings</Link>
+        <Link href='/teaching/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Teaching</Link>
+        <Link href='/contact/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Contact</Link>
       </div>
   </div>
     )
