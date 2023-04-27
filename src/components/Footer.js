@@ -5,7 +5,7 @@ import { BsInstagram } from 'react-icons/bs'
 export default function Footer () {
     return (
     <>
-        <footer className="bg-transparent">
+        <footer className="bg-transparent mt-7">
             <div className="items-center">
                 <p className="font-thin w-screen text-center">Copyright © 2023 - All rights reserved</p>
             </div> 
