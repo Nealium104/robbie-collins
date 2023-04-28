@@ -1,25 +1,16 @@
 import Image from "next/legacy/image";
 import { useState, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
-  const recaptchaRef = useRef(null);
 
   async function handleOnSubmit(e) {
     e.preventDefault();
     setLoading(true);
+
     const formData = new FormData(e.currentTarget);
-
-    const recaptchaValue = recaptchaRef.current.getValue();
-    if (!recaptchaValue) {
-      setLoading(false);
-      return;
-    }
-
-    formData.append('recaptcha', recaptchaValue);
 
     const response = await fetch("/api/mail", {
       method: "post",
@@ -66,11 +57,6 @@ export default function ContactForm() {
                                 <label className="font-thin" htmlFor="message">Message:</label>
                                 <textarea name="message" className="font-thin textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
                             </div>
-                            <ReCAPTCHA
-                                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-                                size="invisible"
-                                ref={recaptchaRef}
-                            />
                             {showSuccess && (
                                 <div className="alert alert-success mt-4">
                                 Success! Your message has been sent!
