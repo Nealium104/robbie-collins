@@ -1,38 +1,23 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { GoogleRecaptcha } from "google-recaptcha";
-const mail = require('@sendgrid/mail');
+const sgMail = require("@sendgrid/mail");
 
-mail.setApiKey(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
-  const body = JSON.parse(req.body)
+  const body = req.body;
 
-  // Initialize the Google Recaptcha
-  const recaptcha = new GoogleRecaptcha({ secret: process.env.RECAPTCHA_SECRET_KEY });
+  const message = {
+    to: "neal.grindstaff@gmail.com",
+    from: "guest@nealgrindstaff.com",
+    subject: "New Message!",
+    text: `Name: \${body.name}\r\nEmail: \${body.email}\r\nMessage: \${body.message}`,
+    html: `<p>Name: \${body.name}</p><p>Email: \${body.email}</p><p>Message: \${body.message}</p>`,
+  };
 
   try {
-    // Verify the recaptcha response
-    await recaptcha.verify({ response: body.recaptcha });
-
-    const message = `
-    Name: ${body.name}\r\n
-    Email: ${body.email}\r\n
-    Message: ${body.message}
-    `
-
-    const data = {
-      to: 'neal.grindstaff@gmail.com',
-      from: 'guest@collinstrumpet.com',
-      subject: 'New Message!',
-      text: message,
-      html: message.replace(/\r\n/g, '<br>')
-    }
-
-    await mail.send(data);
-
-    res.status(200).json({ status: 'Good' });
+    await sgMail.send(message);
+    res.status(200).json({ status: "Success" });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ message: 'Recaptcha verification failed' });
+    res.status(500).json({ error: "Error sending message" });
   }
 }
