@@ -4,6 +4,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
   const [recaptchaValue, setRecaptchaValue] = useState(null)
 
@@ -31,7 +32,7 @@ export default function ContactForm() {
     if (response.ok) {
       setShowSuccess(true);
     } else {
-      // Handle the error message
+      setShowFailure(true);
     }
     console.log(formData);
   }
@@ -75,6 +76,11 @@ export default function ContactForm() {
                             {showSuccess && (
                                 <div className="alert alert-success mt-4">
                                 Success! Your message has been sent!
+                                </div>
+                            )}
+                            {showFailure && (
+                                <div className="alert alert-error mt-4">
+                                Error! Your message could not be sent. Please try again.
                                 </div>
                             )}
                             {loading ? (
