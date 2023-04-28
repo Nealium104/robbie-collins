@@ -6,7 +6,7 @@ export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
-  const recaptchaRef = useRef(null)
+  const recaptchaRef = useRef(null);
 
   async function handleOnSubmit(e) {
     e.preventDefault();
@@ -69,6 +69,7 @@ export default function ContactForm() {
                             <ReCAPTCHA
                                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                                 size="invisible"
+                                ref={recaptchaRef}
                             />
                             {showSuccess && (
                                 <div className="alert alert-success mt-4">
