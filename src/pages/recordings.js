@@ -5,7 +5,7 @@ export default function Recordings () {
     return (
         <>
             <Nav />
-            <h1 className="font-thin text-5xl text-center mt-20 my-5">Recordings</h1>
+            <h1 className="font-thin text-5xl text-center my-5 mt-20 md:mt-0">Recordings</h1>
             <p className="font-thin text-center text-xl">Some of my performances below:</p>
                 <div className="grid grid-cols-1 gap-10 md:grid-cols-2 mx-auto max-w-screen-xl">
                     <div className="m-4 bg-neutral flex flex-col">

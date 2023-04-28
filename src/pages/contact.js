@@ -7,7 +7,7 @@ export default function Contact () {
     return (
         <>
             <Nav />
-            <h1 className="font-thin text-6xl text-center">
+            <h1 className="font-thin text-6xl text-center mt-20 md:mt-0">
                 Contact
             </h1>
             <ContactForm />

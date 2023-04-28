@@ -2,12 +2,12 @@ import Head from 'next/head'
 import '@/styles/globals.css'
 import { useEffect } from "react"
 import { themeChange } from "theme-change"
-import { Nova_Mono } from 'next/font/google'
+import { Nova_Round } from 'next/font/google'
 // import localFont from '@next/font/local'
 
 // const poltawski = localFont({ src: '../../public/font/PoltawskiNowy-VariableFont_wght.ttf'})
 
-const mono = Nova_Mono({ subsets: ['latin'], weight: ['400'] })
+const mono = Nova_Round({ subsets: ['latin'], weight: ['400'] })
 
 
 

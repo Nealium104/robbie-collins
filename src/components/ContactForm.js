@@ -27,7 +27,7 @@ export default function ContactForm () {
     return (
     <>
         <div className="flex justify-center py-3">
-            <div className="bg-primary/50 shadow-2xl items-center">
+            <div className="bg-primary shadow-2xl items-center">
                 <div>
                     <figure className="px-10 pt-10 text-center">
                         <Image 
