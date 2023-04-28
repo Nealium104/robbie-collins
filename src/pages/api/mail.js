@@ -1,23 +1,27 @@
-const sgMail = require("@sendgrid/mail");
+// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const mail = require('@sendgrid/mail');
+
+mail.setApiKey(process.env.SENDGRID_API_KEY)
 
 export default async function handler(req, res) {
-  const body = req.body;
+  const body = JSON.parse(req.body)
 
-  const message = {
-    to: "neal.grindstaff@gmail.com",
-    from: "guest@nealgrindstaff.com",
-    subject: "New Message!",
-    text: `Name: \${body.name}\r\nEmail: \${body.email}\r\nMessage: \${body.message}`,
-    html: `<p>Name: \${body.name}</p><p>Email: \${body.email}</p><p>Message: \${body.message}</p>`,
-  };
+  const message = `
+  Name: ${body.name}\r\n
+  Email: ${body.email}\r\n
+  Message: ${body.message}
+  `
 
-  try {
-    await sgMail.send(message);
-    res.status(200).json({ status: "Success" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error sending message" });
+  const data = {
+    to: 'neal.grindstaff@gmail.com',
+    from: 'guest@nealgrindstaff.com',
+    subject: 'New Message!',
+    text: message,
+    html: message.replace(/\r\n/g, '<br>')
   }
+
+  mail.send(data)
+
+  res.status(200).json({ status: 'Good' })
 }
