@@ -8,7 +8,7 @@ export default function Teaching () {
         <>
             <Nav />
             <div className='mx-auto max-w-screen-lg'>
-                <h1 className="font-thin text-5xl font-bold p-4 text-center">Teaching</h1>
+                <h1 className="font-thin text-5xl font-bold p-4 mt-20 text-center">Teaching</h1>
                 <div className="md:flex items-center bg-black/75 my-6">
                     <Image 
                         src="/robbie4-5.jpg"

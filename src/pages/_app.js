@@ -2,11 +2,14 @@ import Head from 'next/head'
 import '@/styles/globals.css'
 import { useEffect } from "react"
 import { themeChange } from "theme-change"
-import localFont from '@next/font/local'
+import { Nova_Mono } from 'next/font/google'
+// import localFont from '@next/font/local'
 
-const poltawski = localFont({ src: '../../public/font/PoltawskiNowy-VariableFont_wght.ttf'})
+// const poltawski = localFont({ src: '../../public/font/PoltawskiNowy-VariableFont_wght.ttf'})
 
-// const port = Port_Lligat_Sans({ subsets: ['latin'], weight: ['400'] })
+const mono = Nova_Mono({ subsets: ['latin'], weight: ['400'] })
+
+
 
 export default function App({ Component, pageProps }) {
   const themeValues = [
@@ -21,7 +24,7 @@ export default function App({ Component, pageProps }) {
     <>
       <style jsx global>{`
         html {
-          font-family: ${poltawski.style.fontFamily};
+          font-family: ${mono.style.fontFamily};
         }
       `}</style>
       <Head>

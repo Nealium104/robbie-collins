@@ -25,7 +25,7 @@ export default function Home() {
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
-            <animated.h1 style={{...springs, zIndex: 10}} className="text-6xl bg-black/75 p-4 lg:text-9xl font-thin">
+            <animated.h1 style={{...springs, zIndex: 10}} className="text-5xl text-center bg-black/75 p-4 lg:text-9xl font-thin">
               Hi, I'm Robbie
             </animated.h1>
             <animated.div style={{...learnSprings}} className="z-10">
