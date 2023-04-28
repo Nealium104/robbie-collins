@@ -53,7 +53,7 @@ export default function Home() {
             involvement through performance and teaching. And if you need to contact me for lessons or just to reach out, you can contact me <Link className="text-purple-400 underline" href="/contact/">here!</Link>
             </p>
             <div className="flex justify-center py-4">
-              <Link className='btn text-base font-normal bg-primary text-black rounded-lg hover:bg-white hover:text-black focus:bg-white focus:text-black' href="/bio/">Read my Bio</Link>
+              <Link className='btn text-base font-normal bg-primary text-black rounded-lg hover:bg-bg-black/75 hover:text-white focus:bg-black/75 focus:text-black' href="/bio/">Read my Bio</Link>
             </div>
           </div>
         </div>

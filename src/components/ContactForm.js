@@ -27,7 +27,7 @@ export default function ContactForm () {
     return (
     <>
         <div className="flex justify-center py-3">
-            <div className="bg-primary shadow-2xl items-center">
+            <div className="bg-black/25 shadow-2xl items-center">
                 <div>
                     <figure className="px-10 pt-10 text-center">
                         <Image 
@@ -58,7 +58,7 @@ export default function ContactForm () {
                             {showSuccess && (
                                 <div className="alert alert-success mt-4">Success! Your message has been sent!</div>
                             )}
-                            <button className="btn border-none bg-base-100 my-4">Submit</button>
+                            <button className="btn border-none bg-primary text-black my-4 hover:bg-black/75 hover:text-white">Submit</button>
                         </form>
             
                 </div>
