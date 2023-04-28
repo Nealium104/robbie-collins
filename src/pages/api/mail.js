@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { GoogleRecaptcha } from 'google-recaptcha';
+import {ReCAPTCHA } from "react-google-recaptcha";
 const mail = require('@sendgrid/mail');
 
 mail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   const body = JSON.parse(req.body)
 
   // Initialize the Google Recaptcha
-  const recaptcha = new GoogleRecaptcha({ secret: process.env.RECAPTCHA_SECRET_KEY });
+  const recaptcha = new ReCaptcha({ secret: process.env.RECAPTCHA_SECRET_KEY });
 
   try {
     // Verify the recaptcha response
