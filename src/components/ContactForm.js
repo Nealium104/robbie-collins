@@ -1,28 +1,34 @@
-import Image from "next/legacy/image"
+import Image from "next/legacy/image";
 import { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
-export default function ContactForm () {
-    const [showSuccess, setShowSuccess] = useState(false)
+export default function ContactForm() {
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-    async function handleOnSubmit(e) {
-        e.preventDefault();
-        const formData = {};
-        Array.from(e.currentTarget.elements).forEach(field => {
-          if (!field.name) return;
-          formData[field.name] = field.value;
-        });
-        const response = await fetch('/api/mail', {
-          method: 'post',
-          body: JSON.stringify(formData),
-        });
-    
-        if (response.ok) {
-          setShowSuccess(true);
-        } else {
-          // Handle the error message
-        }
-        console.log(formData);
-      }
+  const onChange = () => {}
+
+  async function handleOnSubmit(e) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = {};
+    Array.from(e.currentTarget.elements).forEach((field) => {
+      if (!field.name) return;
+      formData[field.name] = field.value;
+    });
+    const response = await fetch("/api/mail", {
+      method: "post",
+      body: JSON.stringify(formData),
+    });
+
+    setLoading(false);
+    if (response.ok) {
+      setShowSuccess(true);
+    } else {
+      // Handle the error message
+    }
+    console.log(formData);
+  }
 
     return (
     <>
@@ -54,11 +60,31 @@ export default function ContactForm () {
                             <div>
                                 <label className="font-thin" htmlFor="message">Message:</label>
                                 <textarea name="message" className="font-thin textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
-                            </div>        
+                            </div>
+                            <ReCAPTCHA
+                                sitekey="6Lfmw8YlAAAAANgi3ziz-_J6G-ph6rzZslvNVyFD"
+                                onChange={onChange}
+                            />
                             {showSuccess && (
-                                <div className="alert alert-success mt-4">Success! Your message has been sent!</div>
+                                <div className="alert alert-success mt-4">
+                                Success! Your message has been sent!
+                                </div>
                             )}
-                            <button className="btn border-none bg-primary text-black my-4 hover:bg-black/75 hover:text-white">Submit</button>
+                            {loading ? (
+                                <div
+                                class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                role="status">
+                                <span
+                                  class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+                                  >Loading...</span
+                                >
+                              </div>
+                            ) : (
+                                <button className="btn border-none bg-primary text-black my-4 hover:bg-black/75 hover:text-white"
+                                disabled={showSuccess}>
+                                Submit
+                                </button>
+                            )}
                         </form>
             
                 </div>
