@@ -6,22 +6,20 @@ export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
-  const [recaptchaValue, setRecaptchaValue] = useState(null)
-
-  const onChange = (value) => {
-    setRecaptchaValue(value)
-  }
+  const recaptchaRef = useRef(null)
 
   async function handleOnSubmit(e) {
     e.preventDefault();
     setLoading(true);
-    const formData = {};
-    Array.from(e.currentTarget.elements).forEach((field) => {
-      if (!field.name) return;
-      formData[field.name] = field.value;
-    });
+    const formData = new FormData(e.currentTarget);
 
-    formData['recaptcha'] = recaptchaValue;
+    const recaptchaValue = recaptchaRef.current.getValue();
+    if (!recaptchaValue) {
+      setLoading(false);
+      return;
+    }
+
+    formData.append('recaptcha', recaptchaValue);
 
     const response = await fetch("/api/mail", {
       method: "post",
