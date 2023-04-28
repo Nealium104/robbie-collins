@@ -57,6 +57,9 @@ export default function ContactForm() {
                                 <label className="font-thin" htmlFor="message">Message:</label>
                                 <textarea name="message" className="font-thin textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
                             </div>
+                            <div>
+
+                            </div>
                             {showSuccess && (
                                 <div className="alert alert-success mt-4">
                                 Success! Your message has been sent!
@@ -69,12 +72,9 @@ export default function ContactForm() {
                             )}
                             {loading ? (
                                 <div
-                                class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                className="inline-block h-8 w-8 py-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                                 role="status">
-                                <span
-                                  class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
-                                  >Loading...</span
-                                >
+                                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
                               </div>
                             ) : (
                                 <button className="btn border-none bg-primary text-black my-4 hover:bg-black/75 hover:text-white"
