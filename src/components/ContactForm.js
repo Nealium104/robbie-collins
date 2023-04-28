@@ -64,7 +64,6 @@ export default function ContactForm() {
               <div>
                 <ReCAPTCHA
                   sitekey="<your_site_key>"
-                  onChange={onChange}
                   ref={recaptchaRef}
                 />
               </div>
