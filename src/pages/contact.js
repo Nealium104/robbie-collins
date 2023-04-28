@@ -7,6 +7,9 @@ export default function Contact () {
     return (
         <>
             <Nav />
+            <h1 className="font-thin text-6xl text-center">
+                Contact
+            </h1>
             <ContactForm />
             <Footer />
         </>

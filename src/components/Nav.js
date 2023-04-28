@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { BsFillSunFill } from 'react-icons/bs'
+import { BsGripVertical, BsFillHouseFill, BsRocketFill, BsMusicNote, BsMortarboardFill, BsFillEnvelopeFill } from 'react-icons/bs'
 import { GiTrumpetFlag } from 'react-icons/gi'
 import { IoMenu } from 'react-icons/io5'
 
@@ -12,12 +12,12 @@ export default function Nav () {
   }
 
     return (
-  <div>
-      <div className="navbar bg-transparent">
+  <div className='fixed z-20 w-full md:relative'>
+      <div className="navbar bg-base-100">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
           <div className='md:hidden flex items-center'>
-            <button className='mobile-menu-button' onClick={toggleMobileMenu}>
+            <button onClick={toggleMobileMenu}>
               <IoMenu />
             </button>
           </div>
@@ -30,7 +30,7 @@ export default function Nav () {
       <div className="flex-none hidden md:flex">
         <ul className="menu menu-horizontal px-1">
             <button className='px-2'>
-                <BsFillSunFill className='hover:text-primary' />
+                <BsGripVertical />
             </button>
           <li><Link href='/bio/' className='font-thin hover:text-primary'>Bio</Link></li>
           <li tabIndex={0}>
@@ -48,12 +48,37 @@ export default function Nav () {
       </div>
     </div>
     {/* Mobile Menu */}
-      <div className={`flex flex-col items-center mobile-menu ${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden`}>
-        <Link href='/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Home</Link>
-        <Link href='/bio/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Bio</Link>
-        <Link href='/recordings/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Recordings</Link>
-        <Link href='/teaching/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Teaching</Link>
-        <Link href='/contact/' className='btn-ghost font-thin block py-4 px-4 text-sm hover:text-primary text-center'>Contact</Link>
+      <div className={`flex flex-col items-center gap-5 bg-black/75 py-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden`}>
+        <div>
+          <Link href='/' className='btn-ghost font-thin block text-sm hover:text-primary text-center'>
+            <BsFillHouseFill className='mx-auto'/>
+            <span>Home</span>
+          </Link>
+        </div>
+        <div>
+          <Link href='/bio/' className='btn-ghost font-thin block py-1 text-sm hover:text-primary text-center'>
+          <BsRocketFill className='mx-auto'/>
+            <span>Bio</span>
+          </Link>
+        </div>
+        <div>
+          <Link href='/recordings/' className='btn-ghost font-thin block py-1 text-sm hover:text-primary text-center'>
+            <BsMusicNote className='mx-auto'/>
+            <span>Recordings</span>
+          </Link>
+        </div>
+        <div>
+          <Link href='/teaching/' className='btn-ghost font-thin block py-1 text-sm hover:text-primary text-center'>
+            <BsMortarboardFill className='mx-auto'/>
+            <span>Teaching</span>
+          </Link>
+        </div>
+        <div>
+          <Link href='/contact/' className='btn-ghost font-thin block py-1 text-sm hover:text-primary text-center'>
+            <BsFillEnvelopeFill className='mx-auto'/>
+            <span>Contact</span>
+          </Link>
+        </div>
       </div>
   </div>
     )
