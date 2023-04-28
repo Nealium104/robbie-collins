@@ -8,6 +8,8 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [recaptchaValue, setRecaptchaValue] = useState(null)
 
+  const recaptchaRef = useRef();
+
   const onChange = (value) => {
     setRecaptchaValue(value)
   }
@@ -15,6 +17,10 @@ export default function ContactForm() {
   async function handleOnSubmit(e) {
     e.preventDefault();
     setLoading(true);
+
+    const token = await recaptchaRef.current.executeAsync();
+    setRecaptchaValue(token);
+
     const formData = {};
     Array.from(e.currentTarget.elements).forEach((field) => {
       if (!field.name) return;
@@ -69,6 +75,7 @@ export default function ContactForm() {
                                 <textarea name="message" className="font-thin textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
                             </div>
                             <ReCAPTCHA
+                                ref={recaptchaRef}
                                 sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
                                 size="invisible"
                                 onChange = {onChange}
