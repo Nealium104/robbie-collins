@@ -33,7 +33,7 @@ export default function Home() {
             </animated.div>
           </div>
           <Image
-            className="absolute top-0 left-0 w-full h-full object-cover object-center"
+            className=""
             src="/withBackgroundColorCorrected.webp"
             alt="Milky Way"
             layout="fill"

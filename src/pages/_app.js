@@ -2,9 +2,11 @@ import Head from 'next/head'
 import '@/styles/globals.css'
 import { useEffect } from "react"
 import { themeChange } from "theme-change"
-import { Roboto } from 'next/font/google'
+import localFont from '@next/font/local'
 
-const roboto = Roboto({ subsets: ['latin'], weight: ['400', '100'] })
+const poltawski = localFont({ src: '../../public/font/PoltawskiNowy-VariableFont_wght.ttf'})
+
+// const port = Port_Lligat_Sans({ subsets: ['latin'], weight: ['400'] })
 
 export default function App({ Component, pageProps }) {
   const themeValues = [
@@ -19,7 +21,7 @@ export default function App({ Component, pageProps }) {
     <>
       <style jsx global>{`
         html {
-          font-family: ${roboto.style.fontFamily};
+          font-family: ${poltawski.style.fontFamily};
         }
       `}</style>
       <Head>

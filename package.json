@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@next/font": "^13.3.1",
     "@react-spring/parallax": "^9.7.2",
     "@react-spring/web": "^9.7.2",
     "@sendgrid/mail": "^7.7.0",
