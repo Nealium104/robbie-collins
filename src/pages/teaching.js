@@ -2,27 +2,39 @@ import Nav from '../components/Nav'
 import Footer from "../components/Footer"
 import Image from "next/image";
 import Link from 'next/link';
+import { useState } from 'react';
+import { useSpring, animated } from '@react-spring/web';
 
 export default function Teaching () {
+    const [imageIsLoaded, setImageIsLoaded] = useState(false);
+
+    const spring = useSpring({
+        opacity: imageIsLoaded ? 1 : 0,
+        config: { duration: 1000},
+      })
+
     return (
         <>
             <Nav />
             <div className='mx-auto max-w-screen-lg'>
                 <h1 className="font-thin text-5xl font-bold p-4 text-center mt-20 md:mt-0">Teaching</h1>
-                <div className="md:flex items-center bg-black/75 my-6">
-                    <Image 
-                        className='md:mx-5'
-                        src="/robbie4-5.jpg"
-                        width={400}
-                        height={500}
-                        priority
-                    />
-                    <div>
-                        <p className="font-thin py-5 mx-6">There is nothing I enjoy more than teaching music. I have always wanted to be a teacher and I wake up every day excited for the opportunity to teach again. Expressing musical concepts to students seems to come naturally to me, and I have always felt comfortable explaining ideas to others.</p>
-                        <p className="font-thin py-5 mx-6">My passion for the trumpet influences how I teach. Because I am quite motivated personally, my first priority in my trumpet studio is student motivation. It is important to me that my students are curious, and highly motivated. To promote student motivation, I try to lead by example, rising early every day to practice, trying to be positive in all situations, answering emails immediately, and being involved in music and the community in as many ways as possible.</p>
-                        <p className="font-thin py-5 mx-6">Currently, I offer both modern and baroque trumpet lessons both in-person and virtually! I offer in-person lessons to all of those living within the Lexington, KY area. If you are interested in studying with me but do not live in the area, I also provide Zoom lessons. Whether you are looking for a consistent, long-term teacher, or just a one-off lesson to prepare for all-state, I am happy to be of assistance! Please do not hesitate to reach out, the first lesson I provide is always free.</p>
+                    <div className="md:flex items-center bg-black/75 my-6">
+                        <animated.div className="mx-auto" style={spring}>
+                            <Image 
+                                src="/images/robbie4-5.jpg"
+                                placeholder='blur'
+                                blurDataURL='/blur/robbie4-5Blur.jpg'
+                                width={400}
+                                height={500}
+                                onLoad={() => setImageIsLoaded(true)}
+                            />
+                        </animated.div>
+                        <div className='w-1/2 mx-auto'>
+                            <p className="font-thin py-5 ">There is nothing I enjoy more than teaching music. I have always wanted to be a teacher and I wake up every day excited for the opportunity to teach again. Expressing musical concepts to students seems to come naturally to me, and I have always felt comfortable explaining ideas to others.</p>
+                            <p className="font-thin py-5 ">My passion for the trumpet influences how I teach. Because I am quite motivated personally, my first priority in my trumpet studio is student motivation. It is important to me that my students are curious, and highly motivated. To promote student motivation, I try to lead by example, rising early every day to practice, trying to be positive in all situations, answering emails immediately, and being involved in music and the community in as many ways as possible.</p>
+                            <p className="font-thin py-5 ">Currently, I offer both modern and baroque trumpet lessons both in-person and virtually! I offer in-person lessons to all of those living within the Lexington, KY area. If you are interested in studying with me but do not live in the area, I also provide Zoom lessons. Whether you are looking for a consistent, long-term teacher, or just a one-off lesson to prepare for all-state, I am happy to be of assistance! Please do not hesitate to reach out, the first lesson I provide is always free.</p>
+                        </div>
                     </div>
-                </div>
                 <div className="flex flex-col md:flex-row items-center md:h-40 my-10">
                     <Link href="/contact/" className="flex flex-col justify-around text-center p-4 m-4 bg-primary text-black w-3/4 h-full gap-6 hover:bg-black/75 hover:text-white">
                         <h2 className="underline text-3xl font-thin">Individual</h2>

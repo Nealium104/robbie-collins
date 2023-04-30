@@ -5,14 +5,17 @@ export default function Hero() {
     return (
         <>
             <div className="hero min-h-screen relative">
-                <Image
-                    className="absolute inset-0 -z-10"
-                    src="/robbie.webp"
-                    alt="Robbie Close Up"
-                    layout="fill"
-                    objectFit="cover"
-                    priority
-                />
+                <div>
+                    <Image
+                        className="absolute inset-0 -z-10"
+                        src="/images/robbie.jpg"
+                        alt="Robbie Close Up"
+                        layout="fill"
+                        objectFit="cover"
+                        placeholder="blur"
+                        blurDataURL="/blur/robbie.jpg"
+                    />
+                </div>
                 <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
                 <div className="text-center text-neutral-content bg-black/75 p-6 flex items-center justify-center z-10">
                     <div className="max-w-md">
@@ -25,29 +28,3 @@ export default function Hero() {
         </>
     )
 }
-
-{/* <Image
-className="absolute top-0 left-0 w-full h-full object-cover object-center"
-src="/withBackgroundColorCorrected.webp"
-alt="Milky Way"
-layout="fill"
-objectFit="cover"
-blurDataURL="/backgroundBlur.jpg"
-placeholder="blur"
-priority
-/> */}
-
-{/* <div className="min-h-screen block">
-<div className="h-full w-full">
-<Image 
-className="-z-10"
-src="/robbie.webp"
-alt="Robbie Close Up"
-layout="fill"
-objectFit="cover"
-priority
-/> */}
-
-// <div className="hero min-h-screen" style={{ 
-//     backgroundImage: `url("robbie.webp")` 
-//     }}>

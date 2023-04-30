@@ -4,8 +4,11 @@ import Nav from '../components/Nav';
 import Footer from '@/components/Footer';
 import { useSpring, animated } from '@react-spring/web';
 import Link from 'next/link';
+import { useState } from "react";
 
 export default function Home() {
+  const [mainImageLoaded, setMainImageLoaded] = useState(false)
+
   const springs = useSpring({
     from: { y: '-100px', opacity: 0},
     to: { y: '100px', opacity: 1},
@@ -17,6 +20,11 @@ export default function Home() {
     to: {opacity:1},
     config: {duration:2000},
     delay: 1500,
+  })
+
+  const mainSpring = useSpring({
+    opacity: mainImageLoaded ? 1 : 0,
+    config: { duration: 1000},
   })
 
   return (
@@ -33,14 +41,13 @@ export default function Home() {
             </animated.div>
           </div>
           <Image
-            className=""
-            src="/withBackgroundColorCorrected.webp"
+            src="/images/withBackgroundColorCorrected.jpg"
             alt="Milky Way"
             layout="fill"
             objectFit="cover"
-            blurDataURL="/backgroundBlur.jpg"
+            blurDataURL="/blur/withBackgroundColorCorrectedBlur.jpg"
             placeholder="blur"
-            priority
+            onLoad = {() => setMainImageLoaded(true)}
           />
         </div>
         <div className='md:flex md:flex-row-reverse justify-center m-5 md:text-xl'>      

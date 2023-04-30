@@ -1,10 +1,12 @@
 import Image from "next/legacy/image";
 import { useState } from "react";
+import { useSpring, animated } from "@react-spring/web";
 
 export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [imageIsLoaded, setImageIsLoaded] = useState(false)
 
   async function handleOnSubmit(e) {
     e.preventDefault();
@@ -34,21 +36,28 @@ export default function ContactForm() {
     console.log(formData);
   }
 
+  const spring = useSpring({
+    opacity: imageIsLoaded ? 1 : 0,
+    config: { duration: 1000},
+  })
+
     return (
     <>
         <div className="flex justify-center py-3">
             <div className="bg-black/25 shadow-2xl items-center">
                 <div>
-                    <figure className="px-10 pt-10 text-center">
+                    <animated.figure className="px-10 pt-10 text-center" style={spring}>
                         <Image 
-                        src="/contact.webp" 
+                        src="/images/contact.jpg" 
                         alt="Shoes" 
                         className=""
                         width = {400}
                         height = {600}
-                        priority
+                        placeholder="blur"
+                        blurDataURL="/blur/contact"
+                        onLoad={() => setImageIsLoaded(true)}
                         />
-                    </figure>
+                    </animated.figure>
                 </div>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title font-thin text-2xl">Contact me for opportunities and lessons here:</h2>

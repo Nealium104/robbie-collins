@@ -3,14 +3,26 @@ import Nav from '../components/Nav'
 import Hero from "../components/Hero";
 import Image from "next/legacy/image";
 import Footer from "@/components/Footer";
+import { useState } from 'react';
 
 export default function Bio () {
-    const springs = useSpring({
-        from: {opacity: 0},
-        to: {opacity: 1},
+      const [imageIsLoaded, setImageIsLoaded] = useState({
+          1: false,
+          2: false,
+          3: false,
+          4: false,
+          5: false,
+          6: false,
+    })
+      
+      const createSpring = index => useSpring({
+        opacity: imageIsLoaded[index] ? 1 : 0,
         config: { duration: 1000},
       })
 
+      const handleImageLoad = (index) => () => {
+        setImageIsLoaded((prevState) => ({ ...prevState, [index]: true }));
+      };
 
     return (
         <>
@@ -18,29 +30,37 @@ export default function Bio () {
             <Hero />
             <div className="flex flex-col max-w-screen-xl mx-auto">
                 <div className="bg-black/25 p-10 items-center md:flex md:items-center">
-                    <animated.div className="md:w-1/2" style={{...springs}}>
+                    <animated.div className="md:w-1/2" style={createSpring(1)}>
                         <Image 
-                            src="/carousel/chrisMartin.jpg"
+                            src="/images/chrisMartin.jpg"
                             alt="Robbie with Chris Martin"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
-                            />
+                            placeholder='blur'
+                            blurDataURL='/blur/chrisMartinBlur.jpg'
+                            onLoad={handleImageLoad(1)}
+                            spring={createSpring(1)}
+                        />
                     </animated.div>
                     <p className="font-thin p-4 md:w-3/4 text-xl">
                     Kentucky-based trumpeter Robert Collins has a deep passion for music performance and education. He is originally from the Coastal Plains of North Carolina and is an active member in the trumpet world as a performer, organizer and educator on both the regional and international level.
                     </p>
                 </div>
                 <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
-                    <animated.div className="md:w-1/2" style={{...springs}}>
+                    <animated.div className="md:w-1/2" style={createSpring(2)}>
                         <Image 
-                            src="/carousel/saxon1.jpg"
+                            src="/images/saxon1.jpg"
                             alt="Robbie in his saxon outfit"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
+                            placeholder='blur'
+                            blurDataURL='/blur/saxon1Blur.jpg'
+                            onLoad={handleImageLoad(2)}
+                            spring={createSpring(2)}
                         />                    
                     </animated.div>
                         <p className="font-thin p-4 md:w-3/4 text-xl">
@@ -48,14 +68,18 @@ export default function Bio () {
                         </p>
                 </div>
                 <div className="bg-black/25 p-10 md:flex md:items-center">
-                    <animated.div className="md:w-1/2"  style={{...springs}}>
+                    <animated.div className="md:w-1/2" style={createSpring(3)}>
                     <Image 
-                            src="/carousel/HBS.jpg"
+                            src="/images/HBS.jpg"
                             alt="Robbie with an HBS overlay"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
+                            placeholder='blur'
+                            blurDataURL='/blur/HBSBlur.jpg'
+                            onLoad={handleImageLoad(3)}
+                            spring={createSpring(3)}
                             />
                     </animated.div>
                     <p className="font-thin p-4 md:w-3/4 text-xl">
@@ -63,14 +87,18 @@ export default function Bio () {
                     </p>
                 </div>
                 <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
-                    <animated.div className="md:w-1/2" style={{...springs}}> 
+                    <animated.div className="md:w-1/2" style={createSpring(4)}> 
                         <Image 
-                            src="/carousel/baroqueDuet.jpg" 
+                            src="/images/baroqueDuet.jpg" 
                             alt="baroque duet"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
+                            placeholder='blur'
+                            blurDataURL='/blur/baroqueDuetBlur.jpg'
+                            onLoad={handleImageLoad(4)}
+                            spring={createSpring(4)}
                          />
                     </animated.div>
                     <p className="font-thin p-4 md:w-3/4 text-xl">
@@ -78,14 +106,18 @@ export default function Bio () {
                     </p>
                 </div>
                 <div className="bg-black/25 p-10 md:flex md:items-center">
-                    <animated.div className="md:w-1/2" style={{...springs}}>
+                    <animated.div className="md:w-1/2" style={createSpring(5)}>
                         <Image 
-                            src="/carousel/baroqueTrumpetReduced.jpg"
+                            src="/images/baroqueTrumpetReduced.jpg"
                             alt="Robbie facing front with a baroque trumpet"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
+                            placeholder='blur'
+                            blurDataURL='/blur/baroqueTurmpetDuetBlur.jpg'
+                            onLoad={handleImageLoad(5)}
+                            spring={createSpring(5)}
                         />
                     </animated.div>
                     <p className="font-thin p-4 md:w-3/4 text-xl">
@@ -93,14 +125,18 @@ export default function Bio () {
                     </p>
                 </div>
                 <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
-                    <animated.div className="md:w-1/2" style={{...springs}}>
+                    <animated.div className="md:w-1/2" style={createSpring(6)}>
                         <Image 
-                            src="/closeUp.jpg"
+                            src="/images/closeUp.jpg"
                             alt="robbie playing trumpet"
                             width={400}
                             height={400}
                             layout="responsive"
                             objectFit="cover"
+                            placeholder='blur'
+                            blurDataURL='/blur/closeUpBlur.jpg'
+                            onLoad={handleImageLoad(6)}
+                            spring={createSpring(6)}
                         />
                     </animated.div>
                     <p className="font-thin p-4 md:w-3/4 text-xl">
