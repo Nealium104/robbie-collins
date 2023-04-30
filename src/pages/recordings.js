@@ -26,6 +26,12 @@ export default function Recordings () {
                         </div>
                         <span className="text-center w-full font-light">All Through the Night was was composed for one of my first trumpet teachers, Tim Hudson of Greensboro, NC. This piece is dedicated to Tim, Michelle, and Tom Hudson. It is based on the traditional Welsh lullaby "Ard hyd y nos" (All through the night).</span>
                     </div>
+                    <div className="m-4 bg-neutral flex flex-col">
+                        <div className="relative w-full pb-[56%] h-0">
+                            <iframe className="absolute w-full h-full" src="https://www.youtube.com/embed/Ai9OHuWMCOA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        </div>
+                        <span className="text-center w-full font-light">All Through the Night was was composed for one of my first trumpet teachers, Tim Hudson of Greensboro, NC. This piece is dedicated to Tim, Michelle, and Tom Hudson. It is based on the traditional Welsh lullaby "Ard hyd y nos" (All through the night).</span>
+                    </div>
                 </div>
             <Footer />
         </>
