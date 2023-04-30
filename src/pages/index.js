@@ -49,6 +49,7 @@ export default function Home() {
               blurDataURL="/blur/withBackgroundColorCorrectedBlur.jpg"
               placeholder="blur"
               onLoad = {() => setMainImageLoaded(true)}
+              priority
             />
           </animated.div>
         </div>
