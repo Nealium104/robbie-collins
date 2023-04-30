@@ -30,7 +30,7 @@ export default function Recordings () {
                         <div className="relative w-full pb-[56%] h-0">
                             <iframe className="absolute w-full h-full" src="https://www.youtube.com/embed/Ai9OHuWMCOA" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
                         </div>
-                        <span className="text-center w-full font-light">This performance was sparked as a response from the COVID Quarantine. These pictures were taken of our "Quiet City" during the trying times. </span>
+                        <span className="text-center w-full font-light">This performance was sparked as a response from the 2020 quarantine. These pictures were taken of our "Quiet City" during the trying times. </span>
                     </div>
                 </div>
             <Footer />

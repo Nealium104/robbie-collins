@@ -1,5 +1,5 @@
 import Image from "next/legacy/image";
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
@@ -11,10 +11,18 @@ export default function ContactForm() {
     setLoading(true);
 
     const formData = new FormData(e.currentTarget);
+    const data = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+    }
 
     const response = await fetch("/api/mail", {
       method: "post",
-      body: JSON.stringify(formData),
+      header: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
 
     setLoading(false);
