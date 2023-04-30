@@ -2,7 +2,7 @@ import Image from "next/legacy/image";
 import styles from '@/styles/components/Index.module.css'
 import Nav from '../components/Nav';
 import Footer from '@/components/Footer';
-import { useSpring, animated, config } from '@react-spring/web';
+import { useSpring, animated } from '@react-spring/web';
 import Link from 'next/link';
 
 export default function Home() {
