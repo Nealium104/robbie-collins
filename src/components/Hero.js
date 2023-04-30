@@ -1,11 +1,20 @@
 import Link from "next/link";
 import Image from "next/legacy/image"
+import { useState } from "react";
+import { animated, useSpring } from "@react-spring/web";
 
 export default function Hero() {
+    const [imageLoaded, setImageLoaded] = useState(false)
+
+    const spring = useSpring({
+        opacity: imageLoaded ? 1 : 0,
+        config: { duration: 1000},
+      })
+
     return (
         <>
             <div className="hero min-h-screen relative">
-                <div>
+                <animated.div style={spring}>
                     <Image
                         className="absolute inset-0 -z-10"
                         src="/images/robbie.jpg"
@@ -14,8 +23,9 @@ export default function Hero() {
                         objectFit="cover"
                         placeholder="blur"
                         blurDataURL="/blur/robbie.jpg"
+                        onLoad={() => setImageLoaded(true)}
                     />
-                </div>
+                </animated.div>
                 <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
                 <div className="text-center text-neutral-content bg-black/75 p-6 flex items-center justify-center z-10">
                     <div className="max-w-md">

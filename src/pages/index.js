@@ -40,15 +40,17 @@ export default function Home() {
               <Link href="/bio/" className="btn text-base font-normal bg-primary text-black relative z-10 w-1/8 -bottom-20 bg-neutral/50 font-thin hover:text-white hover:border-1 hover:border-white">Learn More</Link>
             </animated.div>
           </div>
-          <Image
-            src="/images/withBackgroundColorCorrected.jpg"
-            alt="Milky Way"
-            layout="fill"
-            objectFit="cover"
-            blurDataURL="/blur/withBackgroundColorCorrectedBlur.jpg"
-            placeholder="blur"
-            onLoad = {() => setMainImageLoaded(true)}
-          />
+          <animated.div style={mainSpring}>
+            <Image
+              src="/images/withBackgroundColorCorrected.jpg"
+              alt="Milky Way"
+              layout="fill"
+              objectFit="cover"
+              blurDataURL="/blur/withBackgroundColorCorrectedBlur.jpg"
+              placeholder="blur"
+              onLoad = {() => setMainImageLoaded(true)}
+            />
+          </animated.div>
         </div>
         <div className='md:flex md:flex-row-reverse justify-center m-5 md:text-xl'>      
           <div className='rounded-lg m-5 bg-neutral'>
