@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   `
 
   const data = {
-    to: 'neal.grindstaff@gmail.com',
+    to: 'rw@gmail.com',
     from: 'guest@collinstrumpet.com',
     subject: 'New Message!',
     text: message,
