@@ -1,12 +1,15 @@
 import Image from "next/legacy/image";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSpring, animated } from "@react-spring/web";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function ContactForm() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [showFailure, setShowFailure] = useState(false)
   const [loading, setLoading] = useState(false);
   const [imageIsLoaded, setImageIsLoaded] = useState(false)
+  const [captchaToken, setCaptchaToken] = useState(null)
+  const captchaRef = useRef(null);
 
   async function handleOnSubmit(e) {
     e.preventDefault();
@@ -40,6 +43,12 @@ export default function ContactForm() {
     opacity: imageIsLoaded ? 1 : 0,
     config: { duration: 1000},
   })
+
+  const verify = () => {
+    captchaRef.current.getResponse().then(res => {
+      setCaptchaToken(res)
+    })
+  }
 
     return (
     <>
@@ -76,6 +85,10 @@ export default function ContactForm() {
                             <div>
 
                             </div>
+                            <ReCAPTCHA 
+                            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                            ref={captchaRef}
+                            onVerify={verify}/>
                             {showSuccess && (
                                 <div className="alert alert-success mt-4 text-center">
                                 Success! Your message has been sent!

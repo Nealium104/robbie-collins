@@ -19,7 +19,7 @@ export default async function handler(req, res) {
   `;
 
   const data = {
-    to: 'robbiecollins47@yahoo.com',
+    to: 'neal.grindstaff@gmail.com',
     from: 'guest@collinstrumpet.com',
     subject: 'New Message!',
     text: message,

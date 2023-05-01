@@ -1,6 +1,5 @@
 .wrapper {
     height: 100vh;
-    perspective: 10px;
   }
   
 .header {
@@ -9,26 +8,9 @@
     justify-content:center;
     align-items:center;
     height:100%;
-    transform-style: preserve-3d;
     z-index: -1;
 }
 
-.background {
-    transform: translateZ(-10px) scale(2);
-}
-
-.foreground {
-    transform: translateZ(-5) scale(1.5);
-  }
-
-.background,
-.foreground {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit:cover;
-    z-index: -1
-}
 
 .title {
     font-size: 7rem;
