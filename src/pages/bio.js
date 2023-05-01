@@ -63,7 +63,7 @@ export default function Bio () {
                             spring={createSpring(2)}
                         />                    
                     </animated.div>
-                        <p className="font-thin p-4 md:w-3/4 text-xl">
+                        <p className="font-thin md:w-3/4 text-xl">
                          Robert has performed in groups such as the Knoxville Symphony Orchestra, the Lexington Brass Band, Saxton's Cornet Band, and the ECU Faculty Brass Quintet. He has also performed at events including the International Trumpet Guild New Works Recital, North American Baroque Trumpet Conference, the National Trumpet Competition, Kentucky Music Educators Conference, Midwest Regional Tuba Euphonium Conference, as well as others. One of Robert’s strengths is his ability to cover a wide ranging set of diverse styles; however, he feels most at home in a chamber music setting.
                         </p>
                 </div>

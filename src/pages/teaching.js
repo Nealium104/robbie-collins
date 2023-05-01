@@ -30,7 +30,7 @@ export default function Teaching () {
                                 onLoad={() => setImageIsLoaded(true)}
                             />
                         </animated.div>
-                        <div className='w-1/2 mx-auto'>
+                        <div className='w-full p-3 md:w-1/2 mx-auto'>
                             <p className="font-thin py-5 ">There is nothing I enjoy more than teaching music. I have always wanted to be a teacher and I wake up every day excited for the opportunity to teach again. Expressing musical concepts to students seems to come naturally to me, and I have always felt comfortable explaining ideas to others.</p>
                             <p className="font-thin py-5 ">My passion for the trumpet influences how I teach. Because I am quite motivated personally, my first priority in my trumpet studio is student motivation. It is important to me that my students are curious, and highly motivated. To promote student motivation, I try to lead by example, rising early every day to practice, trying to be positive in all situations, answering emails immediately, and being involved in music and the community in as many ways as possible.</p>
                             <p className="font-thin py-5 ">Currently, I offer both modern and baroque trumpet lessons both in-person and virtually! I offer in-person lessons to all of those living within the Lexington, KY area. If you are interested in studying with me but do not live in the area, I also provide Zoom lessons. Whether you are looking for a consistent, long-term teacher, or just a one-off lesson to prepare for all-state, I am happy to be of assistance! Please do not hesitate to reach out, the first lesson I provide is always free.</p>
