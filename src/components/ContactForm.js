@@ -21,7 +21,7 @@ export default function ContactForm() {
 
     const response = await fetch("/api/mail", {
       method: "post",
-      header: {
+      headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -49,12 +49,11 @@ export default function ContactForm() {
                     <animated.figure className="px-10 pt-10 text-center" style={spring}>
                         <Image 
                         src="/images/contact.jpg" 
-                        alt="Shoes" 
-                        className=""
+                        alt="Shoes"
                         width = {400}
                         height = {600}
                         placeholder="blur"
-                        blurDataURL="/blur/contact"
+                        blurDataURL="/blur/contactBlur.jpg"
                         onLoad={() => setImageIsLoaded(true)}
                         />
                     </animated.figure>
@@ -78,22 +77,22 @@ export default function ContactForm() {
 
                             </div>
                             {showSuccess && (
-                                <div className="alert alert-success mt-4">
+                                <div className="alert alert-success mt-4 text-center">
                                 Success! Your message has been sent!
                                 </div>
                             )}
                             {showFailure && (
-                                <div className="alert alert-error mt-4">
+                                <div className="alert alert-error mt-4 text-center">
                                 Error! Your message could not be sent. Please refresh and try again.
                                 </div>
                             )}
                             {loading ? (
                                 <div className="py-6">
                                     <div
-                                    class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                                    className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                                     role="status">
                                 </div>
-                                <span class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+                                <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
                               </div>
                             ) : (
                                 <button className="btn border-none bg-primary text-black my-4 hover:bg-black/75 hover:text-white"
