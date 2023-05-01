@@ -63,15 +63,15 @@ export default function ContactForm() {
                         <form action="post" onSubmit={handleOnSubmit} className="w-3/4">
                             <div className="mx-auto w-full">
                                 <label className="font-thin block" htmlFor="name">Name:</label>
-                                <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full max-w-xs" />
+                                <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full max-w-xs" required />
                             </div>
                             <div className="mx-auto w-full">
                                 <label className="font-thin block" htmlFor="email">Email:</label>
-                                <input type="email" name="email" placeholder="Type your email here" className="font-thin input input-bordered w-full max-w-xs" />
+                                <input type="email" name="email" placeholder="Type your email here" className="font-thin input input-bordered w-full max-w-xs" required/>
                             </div>
                             <div className="mx-auto w-full">
                                 <label className="font-thin block" htmlFor="message">Message:</label>
-                                <textarea name="message" className="font-thin textarea textarea-bordered block w-full h-fit" placeholder="Type your message here"></textarea>
+                                <textarea name="message" className="font-thin textarea textarea-bordered block w-full h-fit" placeholder="Type your message here" required></textarea>
                             </div>
                             <div>
 
