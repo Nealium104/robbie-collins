@@ -61,18 +61,18 @@ export default function ContactForm() {
                 </div>
                 <div className="card-body items-center text-center">
                     <h2 className="card-title font-thin text-2xl">Contact me for opportunities and lessons here:</h2>
-                        <form action="post" onSubmit={handleOnSubmit}>
-                            <div>
-                                <label className="font-thin" htmlFor="name">Name:</label>
+                        <form action="post" onSubmit={handleOnSubmit} className="w-3/4">
+                            <div className="mx-auto w-full">
+                                <label className="font-thin block" htmlFor="name">Name:</label>
                                 <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full max-w-xs" />
                             </div>
-                            <div>
-                                <label className="font-thin" htmlFor="email">Email:</label>
+                            <div className="mx-auto w-full">
+                                <label className="font-thin block" htmlFor="email">Email:</label>
                                 <input type="email" name="email" placeholder="Type your email here" className="font-thin input input-bordered w-full max-w-xs" />
                             </div>
-                            <div>
-                                <label className="font-thin" htmlFor="message">Message:</label>
-                                <textarea name="message" className="font-thin textarea textarea-bordered block w-full" placeholder="Type your message here"></textarea>
+                            <div className="mx-auto w-full">
+                                <label className="font-thin block" htmlFor="message">Message:</label>
+                                <textarea name="message" className="font-thin textarea textarea-bordered block w-full h-fit" placeholder="Type your message here"></textarea>
                             </div>
                             <div>
 
@@ -84,7 +84,7 @@ export default function ContactForm() {
                             )}
                             {showFailure && (
                                 <div className="alert alert-error mt-4">
-                                Error! Your message could not be sent. Please try again.
+                                Error! Your message could not be sent. Please refresh and try again.
                                 </div>
                             )}
                             {loading ? (
