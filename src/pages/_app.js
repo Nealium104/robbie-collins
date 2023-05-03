@@ -1,25 +1,10 @@
 import Head from 'next/head'
 import '@/styles/globals.css'
-import { useEffect } from "react"
-import { themeChange } from "theme-change"
 import { Nova_Flat } from 'next/font/google'
-// import localFont from '@next/font/local'
-
-// const poltawski = localFont({ src: '../../public/font/PoltawskiNowy-VariableFont_wght.ttf'})
 
 const flat = Nova_Flat({ subsets: ['latin'], weight: ['400'] })
 
-
-
 export default function App({ Component, pageProps }) {
-  const themeValues = [
-    "business",
-    "light",
-  ]
-
-  useEffect(()=> {
-    themeChange(false)
-  })
   return (
     <>
       <style jsx global>{`

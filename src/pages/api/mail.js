@@ -1,12 +1,22 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-
-const mail = require('@sendgrid/mail');
+import verifyCaptcha from "./verify-captcha";
+import mail from "@sendgrid/mail";
 
 mail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== "POST") {
+    res.status(405).json({ error: "Method not allowed" });
+    return;
+  }
+
+  // Verify the captcha token
+  const captchaVerification = await verifyCaptcha(
+    { body: { captchaToken: req.body.recaptchaValue } },
+    res
+  );
+  if (!captchaVerification) {
+    // If the captcha token is not verified, return early and don't process the form
     return;
   }
 
@@ -19,19 +29,23 @@ export default async function handler(req, res) {
   `;
 
   const data = {
-    to: 'neal.grindstaff@gmail.com',
-    from: 'guest@collinstrumpet.com',
-    subject: 'New Message!',
+    to: "neal.grindstaff@gmail.com",
+    from: "guest@collinstrumpet.com",
+    subject: "New Message!",
     text: message,
-    html: message.replace(/\r\n/g, '<br>'),
+    html: message.replace(/\r\n/g, "<br>"),
   };
 
   try {
+    console.log("Sending email:", data);
     await mail.send(data);
-    res.status(200).json({ status: 'Good' });
+    console.log("Email sent successfully");
+    res.status(200).json({ status: "Good" });
   } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Error sending email', errorMessage: error.message });
+    console.error("Error sending email:", error);
+    res
+      .status(500)
+      .json({ error: "Error sending email", errorMessage: error.message });
   }
 }
 
