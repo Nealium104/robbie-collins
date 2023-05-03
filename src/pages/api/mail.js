@@ -25,11 +25,11 @@ export default async function handler(req, res) {
   const message = `
   Name: ${body.name}\r\n
   Email: ${body.email}\r\n
-  Message: ${body.message}
+  Message: ${body.message} 
   `;
 
   const data = {
-    to: "rwcollins70@gmail.com",
+    to: "rwcollins700@gmail.com",
     from: "guest@collinstrumpet.com",
     subject: "New Message!",
     text: message,
