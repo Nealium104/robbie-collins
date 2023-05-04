@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <>
-      <Nav className='z-10' />
+      <Nav className='' />
       <div className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
