@@ -36,9 +36,10 @@ export default function Teaching () {
                             <p className="font-thin py-5 ">Currently, I offer both modern and baroque trumpet lessons both in-person and virtually! I offer in-person lessons to all of those living within the Lexington, KY area. If you are interested in studying with me but do not live in the area, I also provide Zoom lessons. Whether you are looking for a consistent, long-term teacher, or just a one-off lesson to prepare for all-state, I am happy to be of assistance! Please do not hesitate to reach out, the first lesson I provide is always free.</p>
                         </div>
                     </div>
+                <h2 className='text-center text-4xl'>Lesson Plans:</h2>
                 <div className="flex flex-col md:flex-row items-center md:h-40 my-10">
                     <Link href="/contact/" className="flex flex-col justify-around text-center p-4 m-4 bg-primary text-black w-3/4 h-full gap-6 hover:bg-black/75 hover:text-white">
-                        <h2 className="underline text-3xl font-thin">Individual</h2>
+                        <h3 className="underline text-3xl font-thin">Individual</h3>
                         <div className="h-1/2">
                             <div>
                                 <span className='text-xl font-thin'>30 Minutes | $35</span>
@@ -49,12 +50,12 @@ export default function Teaching () {
                         </div>
                     </Link>
                     <Link href="/contact/" className="flex flex-col justify-evenly text-center p-4 m-4 bg-primary text-black w-3/4 h-full gap-6 hover:bg-black/75 hover:text-white">
-                        <h2 className="underline text-3xl font-thin">Monthly</h2>
-                        <span className='text-xl h-1/2 font-thin'>1 Hour | $180</span>
+                        <h3 className="underline text-3xl font-thin">Monthly</h3>
+                        <span className='text-xl h-1/2 font-thin'>1 Hour per week | $180</span>
                     </Link>
                     <Link href="/contact/" className="flex flex-col justify-between text-center p-4 m-4 bg-primary text-black w-3/4 h-full gap-6 hover:bg-black/75 hover:text-white">
-                        <h2 className="underline text-3xl font-thin">Yearly</h2>
-                        <span className='text-xl h-1/2 font-thin'>1 Hour | $2,000</span>
+                        <h3 className="underline text-3xl font-thin">Yearly</h3>
+                        <span className='text-xl h-1/2 font-thin'>1 Hour per week | $2,000</span>
                     </Link>
                 </div>
             </div>
