@@ -18,9 +18,10 @@ export default function Teaching () {
             <Nav />
             <div className='mx-auto max-w-screen-lg'>
                 <h1 className="font-thin text-5xl font-bold p-4 text-center mt-20 md:mt-0">Teaching</h1>
-                    <div className="md:flex items-center bg-black/75 my-6">
+                    <div className="md:flex pt-5 md:pt-0 items-center bg-black/75 my-6">
                         <animated.div className="mx-auto" style={spring}>
                             <Image 
+                                className='mx-auto'
                                 src="/images/robbie4-5.jpg"
                                 alt="Robbie Pro Headshot"
                                 placeholder='blur'
