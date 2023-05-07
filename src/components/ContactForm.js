@@ -70,8 +70,8 @@ export default function ContactForm() {
                 </div>
                 <div className="card-body items-center">
                     <h2 className="card-title font-thin text-2xl text-center">Contact me for opportunities and lessons here:</h2>
-                        <form action="post" onSubmit={handleOnSubmit} className="w-3/5 md:w-3/5 bg-base-100 rounded-xl py-4 px-4 flex flex-col items-center">
-                            <div className="flex flex-col">
+                        <form action="post" onSubmit={handleOnSubmit} className="w-3/4 md:w-3/5 bg-base-100 rounded-xl py-4 px-4 flex flex-col items-center">
+                            <div className="flex flex-col w-3/4">
                                 <div className="w-full items-center"> 
                                   <label className="font-thin block" htmlFor="name">Name:</label>
                                   <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full bg-white text-black" required />
