@@ -1,10 +1,27 @@
 import Head from 'next/head'
 import '@/styles/globals.css'
 import { Nova_Flat } from 'next/font/google'
+import { useEffect } from 'react';
+import { useRouter } from "next/router";
 
 const flat = Nova_Flat({ subsets: ['latin'], weight: ['400'] })
 
 export default function App({ Component, pageProps }) {
+  const router = useRouter()
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      document.getElementById('top').scrollIntoView();
+    };
+  
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, []);
+  
+  
+
   return (
     <>
       <style jsx global>{`

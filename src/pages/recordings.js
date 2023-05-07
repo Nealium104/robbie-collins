@@ -3,7 +3,7 @@ import Footer from "@/components/Footer";
 
 export default function Recordings () {
     return (
-        <>
+        <div id='top'>
             <Nav />
             <h1 className="font-thin text-5xl text-center my-5 mt-20 md:mt-0">Recordings</h1>
             <p className="font-thin text-center text-xl">Some of my performances below:</p>
@@ -34,6 +34,6 @@ export default function Recordings () {
                     </div>
                 </div>
             <Footer />
-        </>
+        </div>
     )
 }

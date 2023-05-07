@@ -12,7 +12,7 @@ export default function Nav () {
   }
 
     return (
-  <div className='fixed z-20 w-full md:relative'>
+  <div className='fixed z-20 w-full md:relative' id='top'>
       <div className="navbar bg-base-100">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
@@ -32,7 +32,7 @@ export default function Nav () {
             <button className='px-2'>
                 <BsGripVertical />
             </button>
-          <li><Link href='/bio/' className='font-thin hover:text-primary'>Bio</Link></li>
+          <li><Link scroll href='/bio/' className='font-thin hover:text-primary'>Bio</Link></li>
           <li tabIndex={0}>
             <a className='font-thin hover:text-primary'>
               Music

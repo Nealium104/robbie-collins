@@ -25,7 +25,7 @@ export default function Bio () {
       };
 
     return (
-        <>
+        <div id='top'>
             <Nav />
             <Hero />
             <div className="flex flex-col max-w-screen-xl mx-auto">
@@ -145,7 +145,7 @@ export default function Bio () {
                 </div>
             </div>
             <Footer />
-        </>
+        </div>
     )
 }
 

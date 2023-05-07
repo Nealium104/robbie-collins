@@ -14,7 +14,7 @@ export default function Teaching () {
       })
 
     return (
-        <>
+        <div id='top'>
             <Nav />
             <div className='mx-auto max-w-screen-lg'>
                 <h1 className="font-thin text-5xl font-bold p-4 text-center mt-20 md:mt-0">Teaching</h1>
@@ -61,6 +61,6 @@ export default function Teaching () {
                 </div>
             </div>
             <Footer />
-        </>
+        </div>
     )
 }
