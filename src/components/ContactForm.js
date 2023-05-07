@@ -70,19 +70,19 @@ export default function ContactForm() {
                 </div>
                 <div className="card-body items-center">
                     <h2 className="card-title font-thin text-2xl text-center">Contact me for opportunities and lessons here:</h2>
-                        <form action="post" onSubmit={handleOnSubmit} className="w-3/4 md:w-3/5 bg-base-100 rounded-xl py-4 flex flex-col items-center">
+                        <form action="post" onSubmit={handleOnSubmit} className="w-3/5 md:w-3/5 bg-base-100 rounded-xl py-4 px-4 flex flex-col items-center">
                             <div className="flex flex-col">
                                 <div className="w-full items-center"> 
                                   <label className="font-thin block" htmlFor="name">Name:</label>
-                                  <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full" required />
+                                  <input type="text" name="name" placeholder="Type your name here" className="font-thin input input-bordered w-full bg-white text-black" required />
                                 </div>
                                 <div className="w-full py-3">
                                     <label className="font-thin block" htmlFor="email">Email:</label>
-                                    <input type="email" name="email" placeholder="Type your email here" className="font-thin input input-bordered w-full max-w-xs" required/>
+                                    <input type="email" name="email" placeholder="Type your email here" className="font-thin input input-bordered w-full bg-white text-black" required/>
                                 </div>
                                 <div className="w-full py-3">
                                     <label className="font-thin block" htmlFor="message">Message:</label>
-                                    <textarea name="message" className="font-thin textarea textarea-bordered w-full max-w-xs h-40" placeholder="Type your message here" required></textarea>
+                                    <textarea name="message" placeholder="Type your message here" className="font-thin textarea textarea-bordered w-full h-40 bg-white text-black" required></textarea>
                                 </div>
                             <div className="flex justify-center py-5">
                               <ReCAPTCHA
