@@ -16,7 +16,7 @@ export default function Teaching () {
     return (
         <div id='top'>
             <Nav />
-            <div className='mx-auto max-w-screen-lg'>
+            <main className='mx-auto max-w-screen-lg'>
                 <h1 className="font-thin text-5xl font-bold p-4 text-center mt-20 md:mt-0">Teaching</h1>
                     <div className="md:flex pt-5 md:pt-0 items-center bg-black/75 my-6">
                         <animated.div className="mx-auto" style={spring}>
@@ -59,7 +59,7 @@ export default function Teaching () {
                         <span className='text-xl h-1/2 font-thin'>1 Hour per week | $2,000</span>
                     </Link>
                 </div>
-            </div>
+            </main>
             <Footer />
         </div>
     )

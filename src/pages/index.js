@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <div id='top'>
       <Nav />
-      <div className={styles.wrapper}>
+      <main className={styles.wrapper}>
         <div className={styles.header} style={{ position: 'relative' }}>
           <div className="flex flex-col items-center">
             <animated.h1 style={{...springs, zIndex: 10}} className="text-5xl text-center bg-black/75 p-4 lg:text-9xl font-thin">
@@ -68,8 +68,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+        </main>
         <Footer />
-      </div>
     </div>
   );
 }

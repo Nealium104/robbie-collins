@@ -7,10 +7,12 @@ export default function Contact () {
     return (
         <div id='top'>
             <Nav />
-            <h1 className="font-thin text-6xl text-center mt-20 md:mt-0">
-                Contact
-            </h1>
-            <ContactForm />
+            <main>
+                <h1 className="font-thin text-6xl text-center mt-20 md:mt-0">
+                    Contact
+                </h1>
+                <ContactForm />
+            </main>
             <Footer />
         </div>
     )

@@ -4,7 +4,6 @@ import { BsInstagram } from 'react-icons/bs'
 
 export default function Footer () {
     return (
-    <>
         <footer className="bg-transparent mt-7">
             <div className="items-center">
                 <p className="font-thin w-screen text-center">Copyright © 2023 - All rights reserved</p>
@@ -15,6 +14,5 @@ export default function Footer () {
                 <a className="px-3" href="https://www.youtube.com/@rwctrumpet"><BsYoutube className='hover:text-primary' /></a>
             </div>
         </footer>
-    </>
     )
 }    
