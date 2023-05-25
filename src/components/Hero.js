@@ -30,7 +30,7 @@ export default function Hero() {
                 <div className="text-center text-neutral-content bg-black/75 p-6 flex items-center justify-center z-10">
                     <div className="max-w-md">
                         <h1 className="mb-5 text-5xl font-bold text-primary">Hi, I'm Robbie,</h1>
-                        <p className="mb-5 text-2xl font-thin">a renowned trumpet performer, educator, and organizer. I'm known for my work with the Knoxville Symphony Orchestra, International Trumpet Guild, and the University of Kentucky. I invite you to explore my journey through performance, education, and mentorship in the trumpet community.</p>
+                        <p className="mb-5 text-2xl font-thin">a renowned trumpet performer, educator, and organizer. I'm known for my work with the Cincinnati Symphony Orchestra May festival-herald trumpets, Knoxville Symphony Orchestra, International Trumpet Guild, and the University of Kentucky. I invite you to explore my journey through performance, education, and mentorship in the trumpet community.</p>
                         <Link href="/contact/" className="btn btn-primary">Contact Me</Link>
                     </div>
                 </div>
