@@ -13,9 +13,3 @@ body {
 body {
   overflow-y: scroll;
 }
-
-#__next {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
