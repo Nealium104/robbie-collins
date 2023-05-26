@@ -103,7 +103,7 @@ export default function Bio () {
                             />
                         </animated.div>
                         <p className="font-thin p-4 md:w-3/4 text-xl">
-                        In addition to running a private trumpet studio, Robert is a teaching assistant at the University of Kentucky, an ITG Youth Competition Coach, teaching the course MUC163 (Brass Methods), and instructing undergraduate trumpet students in lessons. Prior to this, Robert served as a graduate assistant at East Carolina University. His primary duty for this was performing with the faculty brass quintet in several master classes in performances across North Carolina at various high schools and middle schools. Along with this, he also served as a teaching assistant for Jazz History, and served as an assistant audio engineer for East Carolina University.
+                        In addition to running a private trumpet studio, Robert is a teaching assistant at the University of Kentucky, teaching the course MUC163 (Brass Methods), instructing undergraduate trumpet students in lessons, and acts as an ITG Youth Competition Coach. Prior to this, Robert served as a graduate assistant at East Carolina University. His primary duty for this was performing with the faculty brass quintet in several master classes in performances across North Carolina at various high schools and middle schools. Along with this, he also served as a teaching assistant for Jazz History, and served as an assistant audio engineer for East Carolina University.
                         </p>
                     </div>
                     <div className="bg-black/25 p-10 md:flex md:items-center">
