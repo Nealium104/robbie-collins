@@ -22,7 +22,7 @@ export default function Hero() {
                         layout="fill"
                         objectFit="cover"
                         placeholder="blur"
-                        blurDataURL="/blur/robbie.jpg"
+                        blurDataURL="/blur/robbieBlur.jpg"
                         onLoad={() => setImageLoaded(true)}
                     />
                 </animated.div>

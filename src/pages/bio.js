@@ -116,7 +116,7 @@ export default function Bio () {
                                 layout="responsive"
                                 objectFit="cover"
                                 placeholder='blur'
-                                blurDataURL='/blur/baroqueTurmpetDuetBlur.jpg'
+                                blurDataURL='/blur/baroqueTrumpetDuetBlur.jpg'
                                 onLoad={handleImageLoad(5)}
                                 spring={createSpring(5)}
                             />
