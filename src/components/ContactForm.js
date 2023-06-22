@@ -58,7 +58,7 @@ export default function ContactForm() {
                 <div>
                     <animated.figure className="px-10 pt-10 text-center" style={spring}>
                         <Image 
-                        src="/images/contact.jpg" 
+                        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393780/Robbie/contact_ryqj3w.jpg" 
                         alt="Shoes"
                         width = {400}
                         height = {600}

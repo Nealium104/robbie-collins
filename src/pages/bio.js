@@ -33,7 +33,7 @@ export default function Bio () {
                     <div className="bg-black/25 p-10 items-center md:flex md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(1)}>
                             <Image 
-                                src="/images/chrisMartin.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393809/Robbie/chrisMartin_t35l3i.webp"
                                 alt="Robbie with Chris Martin"
                                 width={400}
                                 height={400}
@@ -52,7 +52,7 @@ export default function Bio () {
                     <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(2)}>
                             <Image 
-                                src="/images/saxon1.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393747/Robbie/saxon1_ydpjgo.webp"
                                 alt="Robbie in his saxon outfit"
                                 width={400}
                                 height={400}
@@ -71,7 +71,7 @@ export default function Bio () {
                     <div className="bg-black/25 p-10 md:flex md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(3)}>
                         <Image 
-                                src="/images/HBS.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393790/Robbie/HBS_mstzwo.jpg"
                                 alt="Robbie with an HBS overlay"
                                 width={400}
                                 height={400}
@@ -90,7 +90,7 @@ export default function Bio () {
                     <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(4)}> 
                             <Image 
-                                src="/images/heraldTrumpets.jpg" 
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393787/Robbie/heraldTrumpets_ymgwy1.jpg" 
                                 alt="Herald Trumpet Ensemble"
                                 width={400}
                                 height={400}
@@ -109,7 +109,7 @@ export default function Bio () {
                     <div className="bg-black/25 p-10 md:flex md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(5)}>
                             <Image 
-                                src="/images/baroqueTrumpetReduced.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393810/Robbie/baroqueTrumpetReduced_tw01ol.jpg"
                                 alt="Robbie facing front with a baroque trumpet"
                                 width={400}
                                 height={400}
@@ -128,7 +128,7 @@ export default function Bio () {
                     <div className="bg-black/75 p-10 md:flex md:flex-row-reverse md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(6)}>
                             <Image 
-                                src="/images/closeUp.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393807/Robbie/closeUp_tpb3ve.jpg"
                                 alt="robbie playing trumpet"
                                 width={400}
                                 height={400}
@@ -150,15 +150,3 @@ export default function Bio () {
         </div>
     )
 }
-
-{/* <div className="bg-black/50 md:flex md:flex-row-reverse md:items-center">
-<p className="p-4 md:w-1/2 text-xl">
-
-</p>
-<div className="md:w-1/2">
-    <Image 
-
-    />
-</div>
-</div> */}
-

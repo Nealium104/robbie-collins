@@ -12,7 +12,7 @@ export default function Nav () {
   }
 
     return (
-  <div className='fixed z-20 w-full md:relative' id='top'>
+  <nav className='fixed z-20 w-full md:relative' id='top'>
       <div className="navbar bg-base-100">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
@@ -80,6 +80,6 @@ export default function Nav () {
           </Link>
         </div>
       </div>
-  </div>
+  </nav>
     )
 }
