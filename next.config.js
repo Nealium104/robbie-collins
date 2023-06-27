@@ -4,6 +4,7 @@ const nextConfig = {
     domains: ['res.cloudinary.com'],
   },
   reactStrictMode: true,
+  compress: true,
 }
 
 module.exports = nextConfig
