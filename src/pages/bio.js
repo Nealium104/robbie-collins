@@ -25,7 +25,7 @@ export default function Bio () {
       };
 
     return (
-        <div id='top'>
+        <div id=''>
             <Nav />
             <main>
                 <Hero />
