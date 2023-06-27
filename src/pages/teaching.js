@@ -22,7 +22,7 @@ export default function Teaching () {
                         <animated.div className="mx-auto" style={spring}>
                             <Image 
                                 className='mx-auto'
-                                src="/images/robbie4-5.jpg"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393753/Robbie/robbie4-5_fstxmo.jpg"
                                 alt="Robbie Pro Headshot"
                                 placeholder='blur'
                                 blurDataURL='/blur/robbie4-5Blur.jpg'
