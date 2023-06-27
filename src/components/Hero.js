@@ -17,7 +17,7 @@ export default function Hero() {
                 <animated.div style={spring}>
                     <Image
                         className="absolute inset-0 -z-10"
-                        src="/images/robbie.jpg"
+                        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393764/Robbie/robbie_r58rla.jpg"
                         alt="Robbie Close Up"
                         layout="fill"
                         objectFit="cover"
