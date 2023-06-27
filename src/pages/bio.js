@@ -109,14 +109,14 @@ export default function Bio () {
                     <div className="bg-black/25 p-10 md:flex md:items-center">
                         <animated.div className="md:w-1/2" style={createSpring(5)}>
                             <Image 
-                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393810/Robbie/baroqueTrumpetReduced_tw01ol.jpg"
-                                alt="Robbie facing front with a baroque trumpet"
+                                src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687888424/Robbie/received_280623074489260Edit_yfc956.jpg"
+                                alt="Robbie playing for Hakan"
                                 width={400}
                                 height={400}
                                 layout="responsive"
                                 objectFit="cover"
                                 placeholder='blur'
-                                blurDataURL='/blur/baroqueTrumpetDuetBlur.jpg'
+                                blurDataURL='/blur/hakanBlur.jpg'
                                 onLoad={handleImageLoad(5)}
                                 spring={createSpring(5)}
                             />
