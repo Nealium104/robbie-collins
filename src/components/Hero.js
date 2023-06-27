@@ -13,7 +13,7 @@ export default function Hero() {
 
     return (
         <>
-            <div className="hero min-h-screen relative">
+            <div className="hero min-h-screen relative" id="top">
                 <animated.div style={spring}>
                     <Image
                         className="absolute inset-0 -z-10"

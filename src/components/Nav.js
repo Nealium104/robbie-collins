@@ -12,7 +12,7 @@ export default function Nav () {
   }
 
     return (
-  <nav className='fixed z-20 w-full md:relative' id='top'>
+  <nav className='sticky z-20 w-full md:relative'>
       <div className="navbar bg-base-100">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
@@ -48,7 +48,7 @@ export default function Nav () {
       </div>
     </div>
     {/* Mobile Menu */}
-      <div className={`flex flex-col items-center gap-5 bg-black/75 py-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden`}>
+      <div className={`absolute w-full flex flex-col items-center gap-5 bg-black/75 py-4 ${mobileMenuOpen ? 'flex' : 'hidden'} md:hidden`}>
         <div>
           <Link href='/' className='btn-ghost font-thin block text-sm hover:text-primary text-center'>
             <BsFillHouseFill className='mx-auto'/>

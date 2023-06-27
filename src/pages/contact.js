@@ -8,7 +8,7 @@ export default function Contact () {
         <div id='top'>
             <Nav />
             <main>
-                <h1 className="font-thin text-6xl text-center mt-20 md:mt-0">
+                <h1 className="font-thin text-6xl text-center mt-4 md:mt-0">
                     Contact
                 </h1>
                 <ContactForm />

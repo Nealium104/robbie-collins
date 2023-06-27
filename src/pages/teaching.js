@@ -17,7 +17,7 @@ export default function Teaching () {
         <div id='top'>
             <Nav />
             <main className='mx-auto max-w-screen-lg'>
-                <h1 className="font-thin text-5xl font-bold p-4 text-center mt-20 md:mt-0">Teaching</h1>
+                <h1 className="font-thin text-5xl font-bold p-4 text-center mt-4 md:mt-0">Teaching</h1>
                     <div className="md:flex pt-5 md:pt-0 items-center bg-black/75 my-6">
                         <animated.div className="mx-auto" style={spring}>
                             <Image 
