@@ -1,5 +1,4 @@
 import Image from "next/legacy/image";
-import styles from '@/styles/components/Index.module.css'
 import Nav from '../components/Nav';
 import Footer from '@/components/Footer';
 import { useSpring, animated } from '@react-spring/web';
@@ -30,8 +29,8 @@ export default function Home() {
   return (
     <div id='top'>
       <Nav />
-      <main className={styles.wrapper}>
-        <div className={styles.header} style={{ position: 'relative' }}>
+      <main className="h-screen">
+        <div className="flex justify-center items-center h-full z-10 relative">
           <div className="flex flex-col items-center">
             <animated.h1 style={{...springs, zIndex: 10}} className="text-5xl text-center bg-black/75 p-4 lg:text-9xl font-thin">
               Hi, I'm Robbie
