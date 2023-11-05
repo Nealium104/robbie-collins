@@ -91,7 +91,7 @@ export default function Teaching() {
           </Link>
           <Link
             href="/contact/"
-            className="flex flex-col w-3/4 h-full gap-6 p-4 m-4 text-center text-black justify-evenly bg-primary hover:bg-black/75 hover:text-white"
+            className="flex flex-col w-3/4 h-full gap-6 p-4 m-4 text-center text-black transition duration-120 justify-evenly bg-primary hover:bg-black/75 hover:text-white"
           >
             <h3 className="text-3xl font-thin underline">Monthly</h3>
             <span className="text-xl font-thin h-1/2">
@@ -100,7 +100,7 @@ export default function Teaching() {
           </Link>
           <Link
             href="/contact/"
-            className="flex flex-col justify-between w-3/4 h-full gap-6 p-4 m-4 text-center text-black bg-primary hover:bg-black/75 hover:text-white"
+            className="flex flex-col justify-between w-3/4 h-full gap-6 p-4 m-4 text-center text-black transition duration-120 bg-primary hover:bg-black/75 hover:text-white"
           >
             <h3 className="text-3xl font-thin underline">Yearly</h3>
             <span className="text-xl font-thin h-1/2">
