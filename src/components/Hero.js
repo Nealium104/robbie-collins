@@ -13,11 +13,11 @@ export default function Hero() {
 
     return (
         <>
-            <div className="hero min-h-screen relative" id="top">
+            <div className="hero min-h-screen relative">
                 <animated.div style={spring}>
                     <Image
                         className="absolute inset-0 -z-10"
-                        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393764/Robbie/robbie_r58rla.jpg"
+                        src="/images/robbie.jpg"
                         alt="Robbie Close Up"
                         layout="fill"
                         objectFit="cover"
