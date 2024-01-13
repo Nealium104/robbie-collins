@@ -8,3 +8,6 @@ I am a freelance web developer. This project is an aboutMe/portfolio website for
 
 # 🥂Update
 Robbie's site was deemed "completed" on April 30th, 2023, which means it's ready for my client to share! It was completed significantly ahead of schedule! Both stretch goals of the SendGrid integration and react-spring were met! I also added some validation to the email portion with captcha. If you're a developer or just want to chat, feel free to contact me to talk about the project!
+
+# Update 01-13-24
+I've started the process of refactoring for a release with Contentful as a CMS.
