@@ -11,6 +11,8 @@ export default function Hero() {
     config: { duration: 1000 },
   });
 
+  useEffect(fetchData(), []);
+
   return (
     <>
       <div className="relative min-h-screen hero">
