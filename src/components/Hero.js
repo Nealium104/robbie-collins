@@ -1,17 +1,26 @@
 import Link from "next/link";
 import Image from "next/legacy/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
+import fetchData from "../pages/api/fetchData";
 
 export default function Hero() {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [header, setHeader] = useState([]);
 
   const spring = useSpring({
     opacity: imageLoaded ? 1 : 0,
     config: { duration: 1000 },
   });
 
-  useEffect(fetchData(), []);
+  useEffect(() => {
+    const getContent = async () => {
+      const contentData = await fetchData("bioHeader");
+      setHeader(contentData);
+      console.log(contentData);
+    };
+    getContent();
+  }, []);
 
   return (
     <>
@@ -35,12 +44,9 @@ export default function Hero() {
               Hi, I'm Robbie,
             </h1>
             <p className="mb-5 text-2xl font-thin">
-              a renowned trumpet performer, educator, and organizer. I'm known
-              for my work with the Cincinnati Symphony Orchestra May
-              festival-herald trumpets, Knoxville Symphony Orchestra,
-              International Trumpet Guild, and the University of Kentucky. I
-              invite you to explore my journey through performance, education,
-              and mentorship in the trumpet community.
+              {header.map((item) => (
+                <p>{item.fields.bioHeader}</p>
+              ))}
             </p>
             <Link href="/contact/" className="btn btn-primary">
               Contact Me
