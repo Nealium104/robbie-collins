@@ -53,7 +53,7 @@ export default function Home() {
               style={mainSpring}
             >
               <Image
-                className="mt-20"
+                className="mt-20 md:mt-0"
                 src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393746/Robbie/withBackgroundColorCorrected_f6yufy.jpg"
                 alt="Milky Way"
                 layout="fill"
