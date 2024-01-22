@@ -29,9 +29,9 @@ export default function Home() {
   return (
     <div id="top">
       <Nav />
-      <main className="">
-        <div className="relative z-10 flex items-center justify-center h-full">
-          <div className="flex flex-col items-center">
+      <main>
+        <header className="relative z-10 flex items-center justify-center h-full">
+          <section className="flex flex-col items-center">
             <animated.h1
               style={{ ...springs, zIndex: 10 }}
               className="p-4 text-5xl font-thin text-center bg-black/75 lg:text-9xl"
@@ -41,15 +41,15 @@ export default function Home() {
             <animated.div style={{ ...learnSprings }} className="z-10">
               <Link
                 href="/bio/"
-                className="relative z-10 text-base font-thin font-normal text-black btn bg-primary w-1/8 -bottom-20 bg-neutral/50 hover:text-white hover:border-1 hover:border-white"
+                className="relative z-10 text-base font-normal text-black btn bg-primary w-1/8 -bottom-20 bg-neutral/50 hover:text-white hover:border-1 hover:border-white"
               >
                 Learn More
               </Link>
             </animated.div>
-          </div>
+          </section>
           <div>
             <animated.div
-              className="z-20 w-full min-h-screen mt-32"
+              className="w-full min-h-screen mt-32"
               style={mainSpring}
             >
               <Image
@@ -64,7 +64,7 @@ export default function Home() {
               />
             </animated.div>
           </div>
-        </div>
+        </header>
         <div className="justify-center m-5 md:flex md:flex-row-reverse md:text-xl">
           <div className="m-5 rounded-lg bg-neutral">
             <p className="max-w-screen-md p-10 font-thin text-center">
