@@ -5,6 +5,7 @@ import Image from "next/legacy/image";
 import Footer from "@/components/Footer";
 import { useState, useEffect } from "react";
 import fetchData from "./api/fetchData";
+import BioSection from "@/components/BioSection";
 
 export default function Bio() {
   const [bioData, setBioData] = useState([]);
@@ -29,7 +30,7 @@ export default function Bio() {
 
   useEffect(() => {
     const getContent = async () => {
-      const contentData = await fetchData("bioParagraphs");
+      const contentData = await fetchData("bioSection");
       setBioData(contentData);
     };
     getContent();
@@ -40,7 +41,7 @@ export default function Bio() {
       <Nav />
       <main>
         <Hero />
-        <div className="flex flex-col max-w-screen-xl mx-auto">
+        {/* <div className="flex flex-col max-w-screen-xl mx-auto">
           <div className="items-center p-10 bg-black/25 md:flex md:items-center">
             <animated.div className="md:w-1/2" style={createSpring(1)}>
               <Image
@@ -206,9 +207,21 @@ export default function Bio() {
               Timothy Hudson.
             </p>
           </div>
-        </div>
+        </div> */}
+        {bioData.map((item, index) => (
+          <BioSection
+            key={index}
+            order={index + 1}
+            text={item.fields.text.content[0].content[0].value}
+            src={item.fields.image.fields.file.url}
+            width={item.fields.image.fields.file.details.image.width}
+            height={item.fields.image.fields.file.details.image.height}
+          />
+        ))}
       </main>
       <Footer />
+      {/* script just for looking at the JSON object */}
+      <script>{console.log(bioData)}</script>
     </div>
   );
 }

@@ -38,17 +38,18 @@ export default function Hero() {
           />
         </animated.div>
         <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-        <div className="z-10 flex items-center justify-center p-6 text-center text-neutral-content bg-black/75">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold text-primary">
-              Hi, I'm Robbie,
-            </h1>
-            <p className="mb-5 text-2xl font-thin">
+        <div className="z-10 flex items-center justify-center p-6 mx-4 text-center text-neutral-content bg-black/75">
+          <div className="max-w-2xl">
+            <h1 className="mb-2 text-5xl font-bold text-primary">About me</h1>
+            <p className="mb-4 text-2xl font-thin">
               {header.map((item) => (
                 <p>{item.fields.bioHeader}</p>
               ))}
             </p>
-            <Link href="/contact/" className="btn btn-primary">
+            <Link
+              href="/contact/"
+              className="text-base font-normal text-black rounded-lg btn bg-primary hover:bg-bg-black/75 hover:text-white hover:border-white focus:bg-black/75 focus:text-black"
+            >
               Contact Me
             </Link>
           </div>
