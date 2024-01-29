@@ -2,16 +2,27 @@ import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import Philosophy from "@/components/Philosophy";
+import { useState, useEffect } from "react";
 import { useSpring, animated } from "@react-spring/web";
+import fetchData from "./api/fetchData";
 
 export default function Teaching() {
   const [imageIsLoaded, setImageIsLoaded] = useState(false);
+  const [teachingPhilosophyData, setTeachingPhilosophyData] = useState([]);
 
   const spring = useSpring({
     opacity: imageIsLoaded ? 1 : 0,
     config: { duration: 1000 },
   });
+
+  useEffect(() => {
+    const getContent = async () => {
+      const contentData = await fetchData("teachingPhilosophy");
+      setTeachingPhilosophyData(contentData);
+    };
+    getContent();
+  }, []);
 
   return (
     <div id="top">
@@ -72,6 +83,17 @@ export default function Teaching() {
               empowered to reach their full potential in the world of music.
             </p>
           </div>
+          {teachingPhilosophyData.map((item, index) => (
+            <section>
+              <Philosophy textArray={item.fields.text} />
+              {/* {item.fields.text.content.map((item, index) => (
+                <>
+                  <p>{item.content[0].value}</p>
+                  <br />
+                </>
+              ))} */}
+            </section>
+          ))}
         </div>
         <h2 className="text-4xl text-center">Lesson Plans:</h2>
         <div className="flex flex-col items-center my-10 md:flex-row md:h-40">
@@ -110,6 +132,7 @@ export default function Teaching() {
         </div>
       </main>
       <Footer />
+      <script>{console.log(teachingPhilosophyData)}</script>
     </div>
   );
 }

@@ -208,19 +208,20 @@ export default function Bio() {
             </p>
           </div>
         </div> */}
-        {bioData.map((item, index) => (
-          <BioSection
-            key={index}
-            order={index + 1}
-            text={item.fields.text.content[0].content[0].value}
-            src={item.fields.image.fields.file.url}
-            width={item.fields.image.fields.file.details.image.width}
-            height={item.fields.image.fields.file.details.image.height}
-          />
-        ))}
+        <section className="flex flex-col items-center justify-center max-w-screen-xl mx-auto">
+          {bioData.map((item, index) => (
+            <BioSection
+              key={index}
+              order={index + 1}
+              text={item.fields?.text?.content[0]?.content[0]?.value}
+              src={item.fields?.image?.fields?.file?.url}
+              width={item.fields?.image?.fields?.file?.details?.image?.width}
+              height={item.fields?.image?.fields?.file?.details?.image?.height}
+            />
+          ))}
+        </section>
       </main>
       <Footer />
-      {/* script just for looking at the JSON object */}
       <script>{console.log(bioData)}</script>
     </div>
   );
