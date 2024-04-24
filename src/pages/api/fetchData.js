@@ -4,6 +4,7 @@ const fetchData = async (content) => {
       `/api/contentful-fetch?content_type=${content}`
     );
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);

@@ -61,6 +61,7 @@ export default function Home() {
           <div>
             <animated.div className="static" style={mainSpring}>
               <Image
+                className="object-top"
                 src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393746/Robbie/withBackgroundColorCorrected_f6yufy.jpg"
                 alt="Milky Way"
                 layout="fill"
