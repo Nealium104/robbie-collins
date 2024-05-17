@@ -17,6 +17,25 @@ export default function Recordings() {
             <div className="relative w-full pb-[56%] h-0">
               <iframe
                 className="absolute w-full h-full"
+                src="https://www.youtube.com/embed/KVUrKn0OrH0?si=3Zhsf4ctoRk0rBv_"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+            <span className="w-full font-light text-center">
+              016 Fantasy for Trumpet and Piano by Rex Richardson is an extreme
+              and obscure piece of trumpet repertoire. My doctoral dissertation
+              is based around the execution of this piece and how it applies to
+              extreme repertoire as a whole. This audo was recorded and produced
+              in the DBH recording studio by Dave Henderson.
+            </span>
+          </div>
+          <div className="flex flex-col m-4 bg-neutral">
+            <div className="relative w-full pb-[56%] h-0">
+              <iframe
+                className="absolute w-full h-full"
                 src="https://www.youtube.com/embed/Ef64GLuyu9k"
                 title="YouTube video player"
                 frameBorder="0"
@@ -80,25 +99,6 @@ export default function Recordings() {
               This performance was sparked as a response from the 2020
               quarantine. These pictures were taken of our "Quiet City" during
               the trying times.{" "}
-            </span>
-          </div>
-          <div className="flex flex-col m-4 bg-neutral">
-            <div className="relative w-full pb-[56%] h-0">
-              <iframe
-                className="absolute w-full h-full"
-                src="https://www.youtube.com/embed/KVUrKn0OrH0?si=3Zhsf4ctoRk0rBv_"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-            <span className="w-full font-light text-center">
-              016 Fantasy for Trumpet and Piano by Rex Richardson is an extreme
-              and obscure piece of trumpet repertoire. My doctoral dissertation
-              is based around the execution of this piece and how it applies to
-              extreme repertoire as a whole. This audo was recorded and produced
-              in the DBH recording studio by Dave Henderson.
             </span>
           </div>
         </div>
