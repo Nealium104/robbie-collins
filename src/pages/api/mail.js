@@ -49,5 +49,6 @@ export default async function handler(req, res) {
   }
 }
 
+// The email can be either one of the following:
 // robbiecollins47@yahoo.com
 // rwcollins70@gmail.com

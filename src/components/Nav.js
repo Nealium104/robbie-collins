@@ -19,7 +19,7 @@ export default function Nav() {
   };
 
   return (
-    <nav className="sticky z-20 w-full md:relative">
+    <nav className="sticky z-20 w-full border-b border-base-200 md:relative">
       <div className="navbar bg-base-100">
         {/* Primary Nav */}
         <div className="flex-1 px-6">
@@ -68,11 +68,11 @@ export default function Nav() {
                   <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
                 </svg>
               </a>
-              <ul className="z-10 bg-black/75">
+              <ul className="z-10 p-2 bg-black/75">
                 <li>
                   <Link
                     href="/recordings/"
-                    className="font-thin hover:text-primary"
+                    className="py-2 font-thin hover:text-primary"
                   >
                     Recordings
                   </Link>
@@ -96,55 +96,53 @@ export default function Nav() {
         </div>
       </div>
       {/* Mobile Menu */}
-      <div
-        className={`absolute w-full flex flex-col items-center gap-5 bg-black/75 py-4 ${
-          mobileMenuOpen ? "flex" : "hidden"
-        } md:hidden`}
-      >
-        <div>
-          <Link
-            href="/"
-            className="block text-sm font-thin text-center btn-ghost hover:text-primary"
-          >
-            <BsFillHouseFill className="mx-auto" />
-            <span>Home</span>
-          </Link>
-        </div>
-        <div>
-          <Link
-            href="/bio/"
-            className="block py-1 text-sm font-thin text-center btn-ghost hover:text-primary"
-          >
-            <BsRocketFill className="mx-auto" />
-            <span>Bio</span>
-          </Link>
-        </div>
-        <div>
-          <Link
-            href="/recordings/"
-            className="block py-1 text-sm font-thin text-center btn-ghost hover:text-primary"
-          >
-            <BsMusicNote className="mx-auto" />
-            <span>Recordings</span>
-          </Link>
-        </div>
-        <div>
-          <Link
-            href="/teaching/"
-            className="block py-1 text-sm font-thin text-center btn-ghost hover:text-primary"
-          >
-            <BsMortarboardFill className="mx-auto" />
-            <span>Teaching</span>
-          </Link>
-        </div>
-        <div>
-          <Link
-            href="/contact/"
-            className="block py-1 text-sm font-thin text-center btn-ghost hover:text-primary"
-          >
-            <BsFillEnvelopeFill className="mx-auto" />
-            <span>Contact</span>
-          </Link>
+      <div className={`${mobileMenuOpen ? "flex" : "hidden"} md:hidden`}>
+        <div className="fixed flex flex-col items-center w-full h-screen py-4 justify-evenly bg-black/75">
+          <div>
+            <Link
+              href="/"
+              className="block py-1 text-lg font-thin text-center btn-ghost hover:text-primary"
+            >
+              <BsFillHouseFill className="w-8 h-8 mx-auto" />
+              <span>Home</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/bio/"
+              className="block py-1 text-lg font-thin text-center btn-ghost hover:text-primary"
+            >
+              <BsRocketFill className="w-8 h-8 mx-auto" />
+              <span>Bio</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/recordings/"
+              className="block py-1 text-lg font-thin text-center btn-ghost hover:text-primary"
+            >
+              <BsMusicNote className="w-8 h-8 mx-auto" />
+              <span>Recordings</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/teaching/"
+              className="block py-1 text-lg font-thin text-center btn-ghost hover:text-primary"
+            >
+              <BsMortarboardFill className="w-8 h-8 mx-auto" />
+              <span>Teaching</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              href="/contact/"
+              className="block py-1 text-lg font-thin text-center btn-ghost hover:text-primary"
+            >
+              <BsFillEnvelopeFill className="w-8 h-8 mx-auto" />
+              <span>Contact</span>
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

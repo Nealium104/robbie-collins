@@ -1,15 +1,26 @@
 import Link from "next/link";
 import Image from "next/legacy/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { animated, useSpring } from "@react-spring/web";
+import fetchData from "../pages/api/fetchData";
 
 export default function Hero() {
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [header, setHeader] = useState([]);
 
   const spring = useSpring({
     opacity: imageLoaded ? 1 : 0,
     config: { duration: 1000 },
   });
+
+  useEffect(() => {
+    const getContent = async () => {
+      const contentData = await fetchData("bioHeader");
+      setHeader(contentData);
+      console.log(contentData);
+    };
+    getContent();
+  }, []);
 
   return (
     <>
@@ -27,20 +38,18 @@ export default function Hero() {
           />
         </animated.div>
         <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-        <div className="z-10 flex items-center justify-center p-6 text-center text-neutral-content bg-black/75">
-          <div className="max-w-md">
-            <h1 className="mb-5 text-5xl font-bold text-primary">
-              Hi, I'm Robbie,
-            </h1>
-            <p className="mb-5 text-2xl font-thin">
-              a renowned trumpet performer, educator, and organizer. I'm known
-              for my work with the Cincinnati Symphony Orchestra May
-              festival-herald trumpets, Knoxville Symphony Orchestra,
-              International Trumpet Guild, and the University of Kentucky. I
-              invite you to explore my journey through performance, education,
-              and mentorship in the trumpet community.
+        <div className="z-10 flex items-center justify-center p-6 mx-4 text-center text-neutral-content bg-black/75">
+          <div className="max-w-2xl">
+            <h1 className="mb-2 text-5xl font-bold text-primary">About me</h1>
+            <p className="mb-4 text-2xl font-thin">
+              {header.map((item) => (
+                <p>{item.fields.bioHeader}</p>
+              ))}
             </p>
-            <Link href="/contact/" className="btn btn-primary">
+            <Link
+              href="/contact/"
+              className="text-base font-normal text-black rounded-lg btn bg-primary hover:bg-bg-black/75 hover:text-white hover:border-white focus:bg-black/75 focus:text-black"
+            >
               Contact Me
             </Link>
           </div>
