@@ -1,0 +1,44 @@
+---
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+
+const socials = [
+  {
+    href: "https://www.facebook.com/robbie.collins.9026",
+    icon: "facebook" as const,
+    label: "Robbie Collins on Facebook",
+  },
+  {
+    href: "https://www.instagram.com/collins_trumpet/",
+    icon: "instagram" as const,
+    label: "Robbie Collins on Instagram",
+  },
+  {
+    href: "https://www.youtube.com/@rwctrumpet",
+    icon: "youtube" as const,
+    label: "Robbie Collins on YouTube",
+  },
+];
+---
+
+<footer class="mt-7 bg-transparent">
+  <p class="text-center font-thin">
+    Copyright &copy; {year} &mdash; All rights reserved
+  </p>
+  <div class="flex justify-center py-5">
+    {
+      socials.map((social) => (
+        <a
+          class="hover:text-primary px-3 transition"
+          href={social.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={social.label}
+        >
+          <Icon name={social.icon} class="h-5 w-5" />
+        </a>
+      ))
+    }
+  </div>
+</footer>

@@ -1,0 +1,67 @@
+---
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import "@fontsource/nova-flat/400.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Absolute or URL for the social share image. */
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = "https://res.cloudinary.com/dwbwyzsyp/image/upload/f_auto,q_auto,w_1200/v1687393764/Robbie/robbie_r58rla.jpg",
+} = Astro.props;
+
+const fullTitle = `${title} | Robert Collins, Trumpet`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en" data-theme="robbie">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- Warm CDN connection early. -->
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+  </head>
+
+  <body class="bg-base-100 text-base-content min-h-screen">
+    <a
+      href="#main"
+      class="focus:bg-primary focus:text-primary-content sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3"
+    >
+      Skip to content
+    </a>
+
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

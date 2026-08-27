@@ -1,0 +1,12 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "incremental": true,
+    // Astro ships ESM with package `exports` maps. Must stay on "bundler"
+    "moduleResolution": "bundler"
+  }
+}

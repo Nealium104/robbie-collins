@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getRecordings } from "../lib/content";
+
+const recordings = await getRecordings();
+---
+
+<Layout
+  title="Recordings"
+  description="Recorded performances by trumpet player Robert Collins, spanning orchestral, chamber, and early music repertoire."
+>
+  <h1 class="my-5 text-center text-5xl font-thin">Recordings</h1>
+  <p class="text-center text-xl font-thin">Some of my performances below:</p>
+
+  <section
+    class="mx-auto grid max-w-screen-xl grid-cols-1 gap-4 p-4 md:grid-cols-2"
+  >
+    {
+      recordings.map((recording) => (
+        <article class="flex flex-col gap-2">
+          <div class="relative aspect-video w-full overflow-hidden rounded-lg bg-black/25">
+            <iframe
+              class="absolute inset-0 h-full w-full"
+              src={`https://www.youtube-nocookie.com/embed/${recording.videoId}`}
+              title={recording.description || "Robert Collins performance"}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            />
+          </div>
+          <p class="font-thin">{recording.description}</p>
+        </article>
+      ))
+    }
+  </section>
+
+  {
+    recordings.length === 0 && (
+      <p class="p-8 text-center font-thin opacity-70">
+        No recordings published yet.
+      </p>
+    )
+  }
+</Layout>

@@ -1,30 +1,88 @@
-# 👋Hi Robbie
+# Robert Collins — collinstrumpet.com
 
-This is the source code I wrote for your project. There's lots of confusing stuff in here, but if you ever want to tinker around, you've got the source files here!
+Portfolio site for trumpet player Robert Collins. Built with
+[Astro](https://astro.build), content from [Contentful](https://contentful.com),
+deployed to [Netlify](https://netlify.com).
 
-# 👋 Hi other devs
+Originally built with Next.js 13 in 2023 and migrated to Astro in 2026. Notes on
+why are in [Migration](#migration-from-nextjs-13) below.
 
-I am a freelance web developer. This project is an aboutMe/portfolio website for a client. I'll be using Next.js as my framework to handle image optimization, routing, and it should give me a better shot at meeting my stretch goals. I'm traditionally a React developer, but Next seems like it'll do more heavy lifting for me. This is my first Next project. I'll be starting with Tailwind/DaisyUI components just to get code on the page ASAP. Stretch goals for the project include a SendGrid integration for the contact page and a parallax effect using React-Spring. I'll be using unsplash assets as well as photos I am producing for the client. Project completion is set for June 20th, 2023.
+---
 
-# 🌐 Technologies
+## Getting started
 
-## Tailwind
-I'm using Tailwind for styling. I have a lot of experience with tailwind and it just helps me move really quick with these smaller projects.
+```bash
+npm install
+cp .env.example .env    # then fill in the values
+npm run dev
+```
 
-## 🎛️ Contentful
-I'm using Contentful for the CMS integration. It provides a client that I make API call requests to within the application. That way, I'm not married to a specific setup. It's been really great so far and lets me use my client's accounts.
+Without Contentful credentials, build against placeholder content:
 
-## ⏭️ Next.js 
-Nextjs is nice in that it provides a way to generate the whole site at build time so the site can be built from the data in my CMS and I don't have to worry about loading times other than making sure my assets are optimized. Next.js also provides some image optimization and is just a good way to do things if you already know react.
+```bash
+USE_MOCK_CONTENT=true npm run dev
+```
 
-## 📨 SendGrid
-I'm using the SendGrid service since my client doesn't want to pay for their own domain email service. The API is pretty easy and it works pretty well.
+## Scripts
 
-## 📚 Other Libraries
-For this project I used a few other libraries. I used DaisyUI's navigation component just because it looked nice and I wanted to try it out. Lots of good stuff from DaisyUI, but I didn't really use it to its best capabilities here. I also used google recaptcha for email validation.
+| Command                | What it does                           |
+| ---------------------- | -------------------------------------- |
+| `npm run dev`          | Dev server on `localhost:4321`         |
+| `npm run build`        | Production build to `dist/`            |
+| `npm run preview`      | Serve the built site locally           |
+| `npm run check`        | `astro check` — types and templates    |
+| `npm run lint`         | ESLint, including `jsx-a11y` rules     |
+| `npm run format`       | Prettier, write                        |
+| `npm run format:check` | Prettier, verify only (future CI)      |
 
-# 🥂Update
-Robbie's site was deemed "completed" on April 30th, 2023, which means it's ready for my client to share! It was completed significantly ahead of schedule! Both stretch goals of the SendGrid integration and react-spring were met! I also added some validation to the email portion with captcha. If you're a developer or just want to chat, feel free to contact me to talk about the project!
+## Environment variables
 
-# Update 01-13-24
-I've started the process of refactoring for a release with Contentful as a CMS.
+See `.env.example` for the full list. In production these live in the Netlify
+dashboard.
+
+If Contentful credentials are missing and `USE_MOCK_CONTENT` is not set, the
+build deliberately fails to prevent publishing a broken site.
+
+## Deployment
+
+Netlify builds from `main` via `netlify.toml`. Static pages go to the CDN,
+`/api/mail` is bundled into a single SSR function (`path: "/*"` with
+`preferStatic: true`, so static assets always win.
+
+Content is fetched in `.astro` frontmatter, which runs at build time on the
+server. Pages build as complete HTML. Should improve load times.
+
+To re-publish after a CMS edit, trigger a Netlify build. A Contentful webhook
+pointed at the Netlify build should do this automatically.
+
+---
+
+## Migration from Next.js 13
+
+The 2023 build worked, but it used Next.js in a way that gave up most of what
+Next.js is for.
+
+Every page fetched its content in the browser, from an internal API route that
+fetched from Contentful. The prerendered HTML contained no content at all. Most
+importantly, search engines indexed empty pages.
+
+Additionally, Astro ships smaller pagesL:
+Measured, gzipped, before and after:
+
+| Route         | Next.js JS | Astro JS |
+| ------------- | ---------: | -------: |
+| `/`           |     105 kB |   0.4 kB |
+| `/bio`        |     109 kB |   0.4 kB |
+| `/recordings` |    85.1 kB |   0.4 kB |
+| `/teaching`   |     105 kB |   0.4 kB |
+| `/contact`    |     109 kB |   1.6 kB |
+
+CSS increased from 6.6 kB to 10.5 kB gzipped because daisyUI 5 emits more
+than v2 did. Page weight is still down by roughly 90 kB per page.
+
+### What else changed
+
+- Secrets: Old keys rotated, services moved to Resend + Turnstile.
+- Services: Replaces SendGrid with [Resend](https://resend.com/emails)
+  SendGrid's free tier was discontinued May 2025
+  Replaces recaptcha with [Turnstile](https://www.cloudflare.com/products/turnstile/)

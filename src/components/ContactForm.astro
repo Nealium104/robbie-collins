@@ -1,0 +1,183 @@
+---
+import Picture from "../components/Picture.astro";
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+
+<div class="flex justify-center py-3">
+  <div class="w-full max-w-3xl bg-black/25 shadow-2xl">
+    <figure class="px-10 pt-10 text-center">
+      <Picture
+        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393780/Robbie/contact_ryqj3w.jpg"
+        alt="Robert Collins holding a trumpet"
+        blur="/blur/contactBlur.jpg"
+        width={400}
+        height={600}
+        sizes="(min-width: 768px) 400px, 90vw"
+        class="mx-auto h-auto w-full max-w-sm rounded"
+      />
+    </figure>
+
+    <div class="flex flex-col items-center p-6">
+      <h2 class="text-center text-2xl font-thin">
+        Contact me for opportunities and lessons here:
+      </h2>
+
+      <form
+        id="contact-form"
+        class="bg-base-100 mt-6 flex w-full flex-col items-center rounded-xl px-4 py-4 md:w-4/5"
+        novalidate
+      >
+        <div class="flex w-full flex-col gap-3 md:w-3/4">
+          <div>
+            <label class="block font-thin" for="name">Name:</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              maxlength="100"
+              autocomplete="name"
+              placeholder="Type your name here"
+              class="input input-bordered w-full bg-white font-thin text-black"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block font-thin" for="email">Email:</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              maxlength="200"
+              autocomplete="email"
+              placeholder="Type your email here"
+              class="input input-bordered w-full bg-white font-thin text-black"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="block font-thin" for="message">Message:</label>
+            <textarea
+              id="message"
+              name="message"
+              maxlength="5000"
+              placeholder="Type your message here"
+              class="textarea textarea-bordered h-40 w-full bg-white font-thin text-black"
+              required></textarea>
+          </div>
+
+          <div class="flex justify-center py-2">
+            <div
+              class="cf-turnstile"
+              data-sitekey={siteKey}
+              data-theme="dark"
+              data-appearance="interaction-only"
+            >
+            </div>
+          </div>
+
+          <p
+            id="form-status"
+            class="hidden text-center"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+
+          <button
+            id="submit-button"
+            type="submit"
+            class="btn bg-primary text-primary-content place-self-center border-none hover:bg-black/75 hover:text-white md:w-1/2"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script
+  is:inline
+  async
+  defer
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+
+<script>
+  const form = document.getElementById(
+    "contact-form",
+  ) as HTMLFormElement | null;
+  const button = document.getElementById(
+    "submit-button",
+  ) as HTMLButtonElement | null;
+  const status = document.getElementById("form-status");
+
+  function show(message: string, tone: "success" | "error" | "info") {
+    if (!status) return;
+    status.textContent = message;
+    status.className = [
+      "mt-2 rounded p-3 text-center",
+      tone === "success" && "bg-success text-success-content",
+      tone === "error" && "bg-error text-error-content",
+      tone === "info" && "opacity-80",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!button) return;
+
+    const data = new FormData(form);
+    const token = String(data.get("cf-turnstile-response") ?? "");
+
+    if (!token) {
+      show(
+        "Please complete the verification challenge and try again.",
+        "error",
+      );
+      return;
+    }
+
+    button.disabled = true;
+    show("Sending…", "info");
+
+    try {
+      const response = await fetch("/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.get("name"),
+          email: data.get("email"),
+          message: data.get("message"),
+          turnstileToken: token,
+        }),
+      });
+
+      const body = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        show("Success! Your message has been sent.", "success");
+        form.reset();
+        // Leave the button disabled so a success cannot be double-submitted.
+      } else {
+        show(
+          body.error ?? "Your message could not be sent. Please try again.",
+          "error",
+        );
+        button.disabled = false;
+        window.turnstile?.reset();
+      }
+    } catch {
+      show(
+        "Network error. Please check your connection and try again.",
+        "error",
+      );
+      button.disabled = false;
+      window.turnstile?.reset();
+    }
+  });
+</script>

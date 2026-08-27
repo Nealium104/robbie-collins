@@ -1,0 +1,65 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  sizes?: string;
+  widths?: number[];
+  blur?: string;
+  loading?: "lazy" | "eager";
+  fetchpriority?: "high" | "low" | "auto";
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  sizes = "100vw",
+  widths = [400, 640, 828, 1080, 1400, 1920],
+  blur,
+  loading = "lazy",
+  fetchpriority = "auto",
+  class: className = "",
+} = Astro.props;
+
+function absolute(url: string): string {
+  return url.startsWith("//") ? `https:${url}` : url;
+}
+
+function variant(url: string, w: number): string {
+  const abs = absolute(url);
+
+  if (abs.includes("res.cloudinary.com")) {
+    // f_auto negotiates AVIF/WebP per browser; q_auto picks a quality target.
+    return abs.replace("/upload/", `/upload/f_auto,q_auto,w_${w}/`);
+  }
+
+  if (abs.includes("images.ctfassets.net")) {
+    const sep = abs.includes("?") ? "&" : "?";
+    return `${abs}${sep}w=${w}&q=75&fm=webp`;
+  }
+
+  return abs;
+}
+
+const srcset = widths.map((w) => `${variant(src, w)} ${w}w`).join(", ");
+const fallback = variant(src, widths[widths.length - 1]);
+const style = blur ? `background-image:url('${blur}')` : undefined;
+---
+
+<img
+  src={fallback}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  fetchpriority={fetchpriority}
+  decoding="async"
+  style={style}
+  class:list={[className, "fade-in", blur && "blur-up"]}
+/>

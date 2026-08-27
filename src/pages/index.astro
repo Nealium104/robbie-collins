@@ -1,0 +1,64 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Picture from "../components/Picture.astro";
+import { getHomeParagraphs } from "../lib/content";
+
+// Runs at build time.
+const paragraphs = await getHomeParagraphs();
+
+const heroImage =
+  "https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393746/Robbie/withBackgroundColorCorrected_f6yufy.jpg";
+---
+
+<Layout
+  title="Home"
+  description="Robert Collins is a trumpet player and teacher working across orchestral, chamber, and early music performance."
+>
+  <section
+    class="relative isolate flex min-h-[calc(100vh-4rem)] items-center justify-center"
+  >
+    <Picture
+      src={heroImage}
+      alt="Robert Collins playing trumpet"
+      blur="/blur/withBackgroundColorCorrectedBlur.jpg"
+      loading="eager"
+      fetchpriority="high"
+      sizes="100vw"
+      class="absolute inset-0 -z-10 h-full w-full object-cover object-top"
+    />
+
+    <div class="flex flex-col items-center px-4">
+      <h1
+        class="hero-drop z-10 bg-black/75 p-4 text-center text-5xl font-thin lg:text-9xl"
+      >
+        Hi, I'm Robbie
+      </h1>
+      <div class="fade-in-delayed relative -bottom-20 z-20">
+        <a
+          href="/bio"
+          class="btn bg-primary border-none text-base font-thin text-black hover:border hover:border-white hover:bg-black/75 hover:text-white"
+        >
+          About me
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="m-5 flex justify-center md:text-xl">
+    <div class="bg-neutral max-w-screen-md rounded-lg p-2">
+      {
+        paragraphs.map((paragraph) => (
+          <p class="p-4 text-center font-thin">{paragraph.text}</p>
+        ))
+      }
+      <div class="flex justify-center py-4">
+        <a
+          href="/bio"
+          class="btn bg-primary text-primary-content rounded-lg text-base font-normal hover:border-white hover:bg-black/75 hover:text-white"
+        >
+          Read my Bio
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Picture from "../components/Picture.astro";
+import { getBioHeader, getBioSections } from "../lib/content";
+
+const [header, sections] = await Promise.all([
+  getBioHeader(),
+  getBioSections(),
+]);
+
+const heroImage =
+  "https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393764/Robbie/robbie_r58rla.jpg";
+
+const description =
+  header.slice(0, 155) || "About Robert Collins, trumpet player and teacher.";
+---
+
+<Layout title="Bio" description={description}>
+  <section
+    class="relative isolate flex min-h-screen items-center justify-center"
+  >
+    <Picture
+      src={heroImage}
+      alt="Robert Collins, close up, holding a trumpet"
+      blur="/blur/robbieBlur.jpg"
+      loading="eager"
+      fetchpriority="high"
+      sizes="100vw"
+      class="absolute inset-0 -z-20 h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 -z-10 bg-gray-800/50"></div>
+
+    <div class="mx-4 max-w-2xl bg-black/75 p-6 text-center">
+      <h1 class="text-primary mb-2 text-5xl font-bold">About me</h1>
+      {header && <p class="mb-4 text-2xl font-thin">{header}</p>}
+      <a
+        href="/contact"
+        class="btn bg-primary text-primary-content rounded-lg text-base font-normal hover:border-white hover:bg-black/75 hover:text-white"
+      >
+        Contact Me
+      </a>
+    </div>
+  </section>
+
+  <div
+    class="mx-auto flex max-w-screen-xl flex-col items-center justify-center"
+  >
+    {
+      sections.map((section, index) => (
+        <article
+          class:list={[
+            "p-10 md:flex md:items-center",
+            index % 2 === 1 ? "bg-black/75" : "bg-black/25 md:flex-row-reverse",
+          ]}
+        >
+          {section.image && (
+            <div class="md:w-1/2">
+              <Picture
+                src={section.image.url}
+                alt={section.image.alt}
+                width={section.image.width}
+                height={section.image.height}
+                sizes="(min-width: 768px) 50vw, 100vw"
+                class="h-auto w-full rounded"
+              />
+            </div>
+          )}
+          <div class="p-4 md:w-full">
+            {section.paragraphs.map((text) => (
+              <p class="pb-3 text-xl font-thin last:pb-0">{text}</p>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</Layout>

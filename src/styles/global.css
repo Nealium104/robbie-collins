@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: robbie --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "robbie";
+  default: true;
+  prefersdark: true;
+  color-scheme: dark;
+
+  --color-base-100: #0f1626;
+  --color-base-200: #1e2436;
+  --color-base-300: #363c4e;
+  --color-base-content: #ffffff;
+
+  --color-primary: #d7b66c;
+  --color-primary-content: #1a1400;
+
+  --color-secondary: #8a4a00;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #f7a541;
+  --color-accent-content: #2a1600;
+
+  --color-neutral: #1e2436;
+  --color-neutral-content: #e0e0e0;
+
+  --color-info: #38bdf8;
+  --color-info-content: #001a26;
+  --color-success: #34d399;
+  --color-success-content: #002114;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-error-content: #2a0000;
+
+  --radius-selector: 0.5rem;
+  --radius-field: 0.5rem;
+  --radius-box: 0.5rem;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  font-family:
+    "Nova Flat",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+body {
+  overflow-y: scroll;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 900ms ease-out both;
+}
+
+.fade-in-slow {
+  animation: fade-in 1400ms ease-out both;
+}
+
+.fade-in-delayed {
+  animation: fade-in 2000ms ease-out 1500ms both;
+}
+
+@keyframes hero-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(100px);
+  }
+}
+
+.hero-drop {
+  animation: hero-drop 1000ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .fade-in-slow,
+  .fade-in-delayed {
+    animation: none;
+  }
+
+  .hero-drop {
+    animation: none;
+    transform: translateY(100px);
+  }
+}
+
+.blur-up {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
