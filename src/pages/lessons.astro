@@ -1,0 +1,210 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+
+<Layout
+  title="Lessons"
+  description="Request a private trumpet lesson with Robert Collins. Choose a lesson frequency and send your availability."
+>
+  <section class="mx-auto max-w-3xl px-4 py-10 sm:py-14">
+    <div class="mb-8 text-center">
+      <h1 class="text-4xl font-bold sm:text-5xl">Request a lesson</h1>
+      <p class="mt-3 text-lg font-thin opacity-80">
+        Tell me a little about what you’re looking for and I’ll get back to you
+        to arrange a time.
+      </p>
+    </div>
+
+    <form
+      id="lesson-form"
+      class="bg-base-200 border-base-300 rounded-box border p-5 shadow-xl sm:p-8"
+      novalidate
+    >
+      <div class="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label class="mb-2 block font-thin" for="lesson-name">Name</label>
+          <input
+            class="input input-bordered w-full bg-white text-black"
+            id="lesson-name"
+            name="name"
+            type="text"
+            maxlength="100"
+            autocomplete="name"
+            placeholder="Your name"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="mb-2 block font-thin" for="lesson-email">Email</label>
+          <input
+            class="input input-bordered w-full bg-white text-black"
+            id="lesson-email"
+            name="email"
+            type="email"
+            maxlength="200"
+            autocomplete="email"
+            placeholder="you@example.com"
+            required
+          />
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="mb-2 block font-thin" for="lesson-frequency">
+            Lesson frequency
+          </label>
+          <select
+            class="select select-bordered w-full bg-white text-black"
+            id="lesson-frequency"
+            name="frequency"
+            required
+          >
+            <option value="" disabled selected>Select a frequency</option>
+            <option value="One lesson to start">One lesson to start</option>
+            <option value="Monthly lessons">Monthly lessons</option>
+            <option value="Weekly lessons">Weekly lessons</option>
+          </select>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="mb-2 block font-thin" for="lesson-message">
+            Goals and availability
+          </label>
+          <textarea
+            class="textarea textarea-bordered min-h-36 w-full bg-white text-black"
+            id="lesson-message"
+            name="message"
+            maxlength="4800"
+            placeholder="Share your experience, goals, and a few times that work for you."
+            required></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-center py-5">
+        <div
+          class="cf-turnstile"
+          data-sitekey={siteKey}
+          data-theme="dark"
+          data-appearance="interaction-only"
+        >
+        </div>
+      </div>
+
+      <p
+        id="lesson-form-status"
+        class="hidden"
+        role="status"
+        aria-live="polite"
+      >
+      </p>
+
+      <button
+        id="lesson-submit-button"
+        class="btn bg-primary text-primary-content mt-2 w-full border-none hover:bg-black/75 hover:text-white sm:mx-auto sm:flex sm:w-1/2"
+        type="submit"
+      >
+        Submit lesson request
+      </button>
+    </form>
+  </section>
+</Layout>
+
+<script
+  is:inline
+  async
+  defer
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+
+<script>
+  const form = document.getElementById("lesson-form") as HTMLFormElement | null;
+  const button = document.getElementById(
+    "lesson-submit-button",
+  ) as HTMLButtonElement | null;
+  const status = document.getElementById("lesson-form-status");
+
+  function show(message: string, tone: "success" | "error" | "info") {
+    if (!status) return;
+    status.textContent = message;
+    status.className = [
+      "mb-3 rounded p-3 text-center",
+      tone === "success" && "bg-success text-success-content",
+      tone === "error" && "bg-error text-error-content",
+      tone === "info" && "opacity-80",
+    ]
+      .filter(Boolean)
+      .join(" ");
+  }
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!button) return;
+
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const frequency = String(data.get("frequency") ?? "").trim();
+    const details = String(data.get("message") ?? "").trim();
+    const token = String(data.get("cf-turnstile-response") ?? "");
+
+    if (!name || !email || !frequency || !details) {
+      show("Please complete all fields before submitting.", "error");
+      return;
+    }
+
+    if (!token) {
+      show(
+        "Please complete the verification challenge and try again.",
+        "error",
+      );
+      return;
+    }
+
+    button.disabled = true;
+    button.setAttribute("aria-busy", "true");
+    show("Sending…", "info");
+
+    try {
+      const response = await fetch("/api/mail", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          message: `Lesson request\nFrequency: ${frequency}\n\n${details}`,
+          turnstileToken: token,
+        }),
+      });
+
+      const body = await response.json().catch(() => ({}));
+
+      if (response.ok) {
+        show("Thanks! Your lesson request has been sent.", "success");
+        form.reset();
+        button.removeAttribute("aria-busy");
+      } else {
+        show(
+          body.error ?? "Your request could not be sent. Please try again.",
+          "error",
+        );
+        button.disabled = false;
+        button.removeAttribute("aria-busy");
+        window.turnstile?.reset();
+      }
+    } catch {
+      show(
+        "Network error. Please check your connection and try again.",
+        "error",
+      );
+      button.disabled = false;
+      button.removeAttribute("aria-busy");
+      window.turnstile?.reset();
+    }
+  });
+</script>
