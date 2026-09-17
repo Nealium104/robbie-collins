@@ -5,7 +5,9 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
 ---
 
 <div class="flex justify-center py-3">
-  <div class="w-full max-w-3xl bg-black/25 shadow-2xl">
+  <div
+    class="bg-base-200 border-base-300 rounded-box w-full max-w-3xl border shadow-xl"
+  >
     <figure class="px-10 pt-10 text-center">
       <Picture
         src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393780/Robbie/contact_ryqj3w.jpg"
@@ -19,9 +21,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
     </figure>
 
     <div class="flex flex-col items-center p-6">
-      <h2 class="text-center text-2xl font-thin">
-        Contact me for opportunities and lessons here:
-      </h2>
+      <h2 class="text-center text-2xl font-thin">Contact me here:</h2>
 
       <form
         id="contact-form"
@@ -131,8 +131,21 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
     event.preventDefault();
     if (!button) return;
 
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const email = String(data.get("email") ?? "").trim();
+    const message = String(data.get("message") ?? "").trim();
     const token = String(data.get("cf-turnstile-response") ?? "");
+
+    if (!name || !email || !message) {
+      show("Please complete all fields before submitting.", "error");
+      return;
+    }
 
     if (!token) {
       show(
@@ -143,6 +156,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
     }
 
     button.disabled = true;
+    button.setAttribute("aria-busy", "true");
     show("Sending…", "info");
 
     try {
@@ -150,9 +164,9 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: data.get("name"),
-          email: data.get("email"),
-          message: data.get("message"),
+          name,
+          email,
+          message,
           turnstileToken: token,
         }),
       });
@@ -162,6 +176,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       if (response.ok) {
         show("Success! Your message has been sent.", "success");
         form.reset();
+        button.removeAttribute("aria-busy");
         // Leave the button disabled so a success cannot be double-submitted.
       } else {
         show(
@@ -169,6 +184,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
           "error",
         );
         button.disabled = false;
+        button.removeAttribute("aria-busy");
         window.turnstile?.reset();
       }
     } catch {
@@ -177,6 +193,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
         "error",
       );
       button.disabled = false;
+      button.removeAttribute("aria-busy");
       window.turnstile?.reset();
     }
   });

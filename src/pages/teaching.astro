@@ -4,21 +4,6 @@ import Picture from "../components/Picture.astro";
 import { getPhilosophy } from "../lib/content";
 
 const philosophy = await getPhilosophy();
-
-const lessons = [
-  {
-    name: "Individual",
-    rates: ["30 Minutes | $35", "1 Hour | $50"],
-  },
-  {
-    name: "Monthly",
-    rates: ["1 Hour per week | $180"],
-  },
-  {
-    name: "Yearly",
-    rates: ["1 Hour per week | $2,000"],
-  },
-];
 ---
 
 <Layout
@@ -28,7 +13,9 @@ const lessons = [
   <div class="mx-auto flex max-w-screen-lg flex-col gap-8 p-4">
     <h1 class="text-center text-5xl font-bold">Teaching</h1>
 
-    <div class="flex flex-col gap-6 bg-black/75 p-6 md:flex-row">
+    <div
+      class="bg-base-200 border-base-300 rounded-box flex flex-col gap-6 border p-5 shadow-xl sm:p-8 md:flex-row"
+    >
       <Picture
         src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393753/Robbie/robbie4-5_fstxmo.jpg"
         alt="Robert Collins, professional headshot"
@@ -44,29 +31,6 @@ const lessons = [
       <div class="flex w-full flex-col gap-4 leading-8">
         {philosophy.paragraphs.map((text) => <p class="font-thin">{text}</p>)}
       </div>
-    </div>
-
-    <div>
-      <h2 class="text-4xl">Lesson Plans:</h2>
-      <p class="italic">Free lesson for prospective students</p>
-    </div>
-
-    <div class="grid gap-4 md:grid-cols-3">
-      {
-        lessons.map((lesson) => (
-          <a
-            href="/contact"
-            class="bg-primary text-primary-content flex flex-col justify-around gap-6 p-4 text-center transition duration-150 hover:bg-black/75 hover:text-white"
-          >
-            <h3 class="text-3xl font-thin underline">{lesson.name}</h3>
-            <div>
-              {lesson.rates.map((rate) => (
-                <p class="text-xl font-thin">{rate}</p>
-              ))}
-            </div>
-          </a>
-        ))
-      }
     </div>
   </div>
 </Layout>

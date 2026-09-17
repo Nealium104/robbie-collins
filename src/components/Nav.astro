@@ -8,6 +8,7 @@ const links = [
   { href: "/bio", label: "Bio", icon: "rocket" as const },
   { href: "/recordings", label: "Recordings", icon: "music" as const },
   { href: "/teaching", label: "Teaching", icon: "mortarboard" as const },
+  { href: "/lessons", label: "Lessons", icon: "mortarboard" as const },
   { href: "/contact", label: "Contact", icon: "envelope" as const },
 ];
 
@@ -54,29 +55,31 @@ const isCurrent = (href: string) => path === href;
           </a>
         </li>
         <li>
-          <details>
-            <summary class="hover:text-primary font-thin"> Music </summary>
-            <ul class="z-10 bg-black/90 p-2">
-              <li>
-                <a
-                  href="/recordings"
-                  class="hover:text-primary py-2 font-thin"
-                  aria-current={isCurrent("/recordings") ? "page" : undefined}
-                >
-                  Recordings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/teaching"
-                  class="hover:text-primary py-2 font-thin"
-                  aria-current={isCurrent("/teaching") ? "page" : undefined}
-                >
-                  Teaching
-                </a>
-              </li>
-            </ul>
-          </details>
+          <a
+            href="/recordings"
+            class="hover:text-primary font-thin"
+            aria-current={isCurrent("/recordings") ? "page" : undefined}
+          >
+            Recordings
+          </a>
+        </li>
+        <li>
+          <a
+            href="/teaching"
+            class="hover:text-primary font-thin"
+            aria-current={isCurrent("/teaching") ? "page" : undefined}
+          >
+            Teaching
+          </a>
+        </li>
+        <li>
+          <a
+            href="/lessons"
+            class="hover:text-primary font-thin"
+            aria-current={isCurrent("/lessons") ? "page" : undefined}
+          >
+            Lessons
+          </a>
         </li>
         <li>
           <a
