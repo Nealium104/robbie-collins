@@ -17,26 +17,19 @@ const isCurrent = (href: string) => path === href;
 
 <nav class="border-base-200 sticky top-0 z-20 w-full border-b md:relative">
   <div class="navbar bg-base-100">
-    <div class="flex-1 px-6">
-      <div class="flex items-center md:hidden">
-        <button
-          id="nav-toggle"
-          type="button"
-          class="btn btn-ghost btn-sm"
-          aria-expanded="false"
-          aria-controls="mobile-menu"
-          aria-label="Open navigation menu"
-        >
-          <Icon name="menu" class="h-6 w-6" />
-        </button>
-      </div>
-
-      <a
-        href="/"
-        class="btn btn-ghost gap-2 px-2"
-        aria-label="Robert Collins, home"
+    <div class="flex flex-1 items-center gap-1 px-2 md:px-6">
+      <button
+        id="nav-toggle"
+        type="button"
+        class="btn btn-ghost btn-sm md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open navigation menu"
       >
-        <Icon name="trumpet" class="text-xl" />
+        <Icon name="menu" class="h-6 w-6" />
+      </button>
+
+      <a href="/" class="btn btn-ghost px-2" aria-label="Robert Collins, home">
         <span class="text-primary text-2xl font-bold normal-case"
           >Robert Collins</span
         >
