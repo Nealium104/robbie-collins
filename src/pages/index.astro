@@ -1,10 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Picture from "../components/Picture.astro";
-import { getHomeParagraphs } from "../lib/content";
+import { getHomePageHeader, getHomeParagraphs } from "../lib/content";
 
 // Runs at build time.
-const paragraphs = await getHomeParagraphs();
+const [header, paragraphs] = await Promise.all([
+  getHomePageHeader(),
+  getHomeParagraphs(),
+]);
+
+// "Name, Role" shows the name large and the role as a smaller line beneath.
+const [name, ...rest] = (header || "Hi, I'm Robbie").split(",");
+const role = rest.join(",").trim();
 
 const heroImage =
   "https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393746/Robbie/withBackgroundColorCorrected_f6yufy.jpg";
@@ -15,7 +22,7 @@ const heroImage =
   description="Robert Collins is a trumpet player and teacher working across orchestral, chamber, and early music performance."
 >
   <section
-    class="relative isolate flex min-h-[calc(100vh-4rem)] items-center justify-center"
+    class="relative isolate flex min-h-[calc(100vh-4rem)] items-end justify-center pb-[14vh]"
   >
     <Picture
       src={heroImage}
@@ -27,38 +34,54 @@ const heroImage =
       class="absolute inset-0 -z-10 h-full w-full object-cover object-top"
     />
 
-    <div class="flex flex-col items-center px-4">
+    <div class="flex flex-col items-center gap-8 px-4">
       <h1
-        class="hero-drop z-10 bg-black/75 p-4 text-center text-5xl font-thin lg:text-9xl"
+        class="hero-rise flex flex-col items-center gap-3 text-center [text-shadow:0_2px_24px_rgb(0_0_0/0.6)]"
       >
-        Hi, I'm Robbie
-      </h1>
-      <div class="fade-in-delayed relative -bottom-20 z-20">
-        <a
-          href="/bio"
-          class="btn bg-primary border-none text-base font-thin text-black hover:border hover:border-white hover:bg-black/75 hover:text-white"
+        <span class="text-primary text-5xl leading-none sm:text-7xl lg:text-8xl"
+          >{name.trim()}</span
         >
-          About me
-        </a>
-      </div>
+        {role && <span class="sr-only">, </span>}
+        {
+          role && (
+            <span class="text-2xl leading-tight sm:text-3xl lg:text-4xl">
+              {role}
+            </span>
+          )
+        }
+      </h1>
+      <a
+        href="/bio"
+        class="fade-in-delayed btn bg-primary text-primary-content border-none px-6 text-base hover:bg-white"
+      >
+        About me
+      </a>
     </div>
   </section>
 
-  <section class="m-5 flex justify-center md:text-xl">
-    <div class="bg-neutral max-w-screen-md rounded-lg p-2">
-      {
-        paragraphs.map((paragraph) => (
-          <p class="p-4 text-center font-thin">{paragraph.text}</p>
-        ))
-      }
-      <div class="flex justify-center py-4">
-        <a
-          href="/bio"
-          class="btn bg-primary text-primary-content rounded-lg text-base font-normal hover:border-white hover:bg-black/75 hover:text-white"
-        >
-          Read my Bio
-        </a>
-      </div>
+  <section
+    class="mx-auto flex max-w-2xl flex-col items-center gap-8 px-4 py-16 text-center sm:py-20"
+  >
+    {
+      paragraphs.map((paragraph) => (
+        <p class="text-lg leading-8 sm:text-xl sm:leading-9">
+          {paragraph.text}
+        </p>
+      ))
+    }
+    <div class="flex flex-wrap justify-center gap-3">
+      <a
+        href="/lessons"
+        class="btn bg-primary text-primary-content border-none px-6 text-base hover:bg-white"
+      >
+        Request a lesson
+      </a>
+      <a
+        href="/bio"
+        class="btn border-primary text-primary hover:bg-primary hover:text-primary-content bg-transparent px-6 text-base"
+      >
+        Read my bio
+      </a>
     </div>
   </section>
 </Layout>

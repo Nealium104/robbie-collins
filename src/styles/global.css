@@ -69,48 +69,59 @@ body {
   }
 }
 
-.fade-in {
-  animation: fade-in 900ms ease-out both;
-}
-
-.fade-in-slow {
-  animation: fade-in 1400ms ease-out both;
-}
-
 .fade-in-delayed {
   animation: fade-in 2000ms ease-out 1500ms both;
 }
 
-@keyframes hero-drop {
+@keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(-100px);
+    transform: translateY(80px);
   }
   to {
     opacity: 1;
-    transform: translateY(100px);
+    transform: translateY(0);
   }
 }
 
-.hero-drop {
-  animation: hero-drop 1000ms ease-out both;
+.hero-rise {
+  animation: hero-rise 1200ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-in,
-  .fade-in-slow,
   .fade-in-delayed {
     animation: none;
   }
 
-  .hero-drop {
+  .pic img {
+    transition: none;
+  }
+
+  .hero-rise {
     animation: none;
-    transform: translateY(100px);
   }
 }
 
-.blur-up {
+/* Picture: the frame shows a blurred placeholder until the image has loaded,
+   then the image fades in over it. */
+.pic::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--pic-preview);
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  /* Soften the tiny preview; scaling hides the blur's faded edges. */
+  filter: blur(18px);
+  transform: scale(1.15);
+}
+
+.pic img {
+  position: relative;
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+}
+
+.pic img[data-loaded] {
+  opacity: 1;
 }

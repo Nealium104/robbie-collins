@@ -6,9 +6,14 @@ interface Props {
   height?: number;
   sizes?: string;
   widths?: number[];
+  /** Local blur placeholder. Without one, a tiny CDN variant is used. */
   blur?: string;
   loading?: "lazy" | "eager";
   fetchpriority?: "high" | "low" | "auto";
+  /**
+   * Classes for the frame (size, position, rounding, spacing). Any
+   * `object-*` classes are applied to the image itself instead.
+   */
   class?: string;
 }
 
@@ -45,21 +50,73 @@ function variant(url: string, w: number): string {
   return abs;
 }
 
+/** A ~1KB stand-in shown while the real image loads. */
+function placeholder(url: string): string | undefined {
+  const abs = absolute(url);
+
+  if (abs.includes("res.cloudinary.com")) {
+    return abs.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto:low,w_32,e_blur:200/",
+    );
+  }
+
+  if (abs.includes("images.ctfassets.net")) {
+    const sep = abs.includes("?") ? "&" : "?";
+    return `${abs}${sep}w=32&q=40&fm=jpg`;
+  }
+
+  return undefined;
+}
+
 const srcset = widths.map((w) => `${variant(src, w)} ${w}w`).join(", ");
 const fallback = variant(src, widths[widths.length - 1]);
-const style = blur ? `background-image:url('${blur}')` : undefined;
+const preview = blur ?? placeholder(src);
+
+// Cropping classes belong on the image; everything else sizes the frame.
+const tokens = className.split(/\s+/).filter(Boolean);
+const isImageClass = (t: string) => /^([a-z0-9]+:)*object-/.test(t);
+const frameClass = tokens.filter((t) => !isImageClass(t)).join(" ");
+const imageClass = tokens.filter(isImageClass).join(" ");
+// The placeholder layer needs a positioned frame; keep the caller's if given.
+const positioned = tokens.some((t) =>
+  ["absolute", "fixed", "sticky", "relative"].includes(t),
+);
 ---
 
-<img
-  src={fallback}
-  srcset={srcset}
-  sizes={sizes}
-  alt={alt}
-  width={width}
-  height={height}
-  loading={loading}
-  fetchpriority={fetchpriority}
-  decoding="async"
-  style={style}
-  class:list={[className, "fade-in", blur && "blur-up"]}
-/>
+<span
+  class:list={[
+    "pic bg-base-200 block overflow-hidden",
+    !positioned && "relative",
+    frameClass,
+  ]}
+  style={preview ? `--pic-preview:url('${preview}')` : undefined}
+>
+  <img
+    src={fallback}
+    srcset={srcset}
+    sizes={sizes}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    fetchpriority={fetchpriority}
+    decoding="async"
+    class:list={["block h-full w-full", imageClass]}
+  />
+</span>
+
+<script>
+  // Reveal each image once it has loaded (or failed, so alt text shows).
+  for (const img of document.querySelectorAll<HTMLImageElement>(".pic img")) {
+    const reveal = () => {
+      img.dataset.loaded = "";
+    };
+    if (img.complete) {
+      reveal();
+    } else {
+      img.addEventListener("load", reveal, { once: true });
+      img.addEventListener("error", reveal, { once: true });
+    }
+  }
+</script>

@@ -5,6 +5,8 @@ import type {
   Recording,
 } from "./content";
 
+export const homePageHeader = "Dr. Robert Collins, Educator and Performer";
+
 export const homeParagraphs: HomeParagraph[] = [
   {
     text: "I am a trumpet player and teacher based in the United States, performing across orchestral, chamber, and early music settings.",

@@ -78,6 +78,13 @@ export function extractYouTubeId(url: unknown): string | null {
   return match ? match[1] : null;
 }
 
+export async function getHomePageHeader(): Promise<string> {
+  if (useMockContent) return mock.homePageHeader;
+
+  const items = await entries("homePageHeader");
+  return String(items[0]?.homePageHeader ?? "").trim();
+}
+
 export async function getHomeParagraphs(): Promise<HomeParagraph[]> {
   if (useMockContent) return [...mock.homeParagraphs].sort(byPosition);
 

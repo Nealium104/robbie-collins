@@ -2,6 +2,7 @@
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
 import "@fontsource/nova-flat/400.css";
+import novaFlat from "@fontsource/nova-flat/files/nova-flat-latin-400-normal.woff2?url";
 import "../styles/global.css";
 
 interface Props {
@@ -45,23 +46,41 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <!-- Fetch the site font with the page so headings don't swap fonts late. -->
+    <link
+      rel="preload"
+      href={novaFlat}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Without JavaScript, images can't report loading, so show them as-is. -->
+    <noscript
+      ><style>
+        .pic img {
+          opacity: 1;
+        }
+      </style></noscript
+    >
+
     <!-- Warm CDN connection early. -->
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+
+    <body class="bg-base-100 text-base-content min-h-screen">
+      <a
+        href="#main"
+        class="focus:bg-primary focus:text-primary-content sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3"
+      >
+        Skip to content
+      </a>
+
+      <Nav />
+      <main id="main">
+        <slot />
+      </main>
+      <Footer />
+    </body>
   </head>
-
-  <body class="bg-base-100 text-base-content min-h-screen">
-    <a
-      href="#main"
-      class="focus:bg-primary focus:text-primary-content sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-3"
-    >
-      Skip to content
-    </a>
-
-    <Nav />
-    <main id="main">
-      <slot />
-    </main>
-    <Footer />
-  </body>
 </html>
