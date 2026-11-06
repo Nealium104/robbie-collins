@@ -59,6 +59,10 @@ export const recordings: Recording[] = [
 ];
 
 export const philosophy: PhilosophySection = {
+  subtitle:
+    "I want my students to be the best version of themselves, not a carbon copy of me.",
+  quoteBreak:
+    "There's nothing more fulfilling than witnessing a student's \"AHA!\" moment.",
   paragraphs: [
     "Teaching music is my deepest passion, and I've held the lifelong dream of becoming an educator. Explaining musical concepts to my students is second nature, and I find it easy to communicate ideas to others. All of my teaching stems from a place of developing strong fundamentals and unrelenting musicality (even in fundamentals). Generally, I try to make my teaching style cater to the students on an individual level. I have come to find that people learn in a variety of ways, and I enjoy the challenge of finding what works best for each student. I place great importance on promoting self-motivation by nurturing the students' curiosity; I want them to be the best version of themselves, not a carbon copy of myself. I make a point to encourage my students to stay curious by attending masterclasses, taking lessons with different musicians that peak their interest (not just trumpet players), and attending various conferences and seminars.",
     "I firmly believe that teaching is a mutual exchange. The best educators learn from their students as much as they impart knowledge onto them. There's nothing more fulfilling than witnessing a student's \"AHA!\" moment, or listening to them express their own ideas in a unique way. Their enthusiasm becomes my own, and I embrace the fresh perspectives they bring to the world of music while welcoming their suggestions. Thanks to this dynamic exchange of ideas, I continue to grow as a musician and each day feels fresh and new. It makes me eagerly anticipate the years of teaching that lie ahead for me.",

@@ -26,6 +26,8 @@ export interface Recording {
 }
 
 export interface PhilosophySection {
+  subtitle: string;
+  quoteBreak: string;
   paragraphs: string[];
 }
 
@@ -126,5 +128,9 @@ export async function getPhilosophy(): Promise<PhilosophySection> {
   if (useMockContent) return mock.philosophy;
 
   const items = await entries("teachingPhilosophy");
-  return { paragraphs: richTextToParagraphs(items[0]?.text) };
+  return {
+    subtitle: String(items[0]?.subtitle ?? "").trim(),
+    quoteBreak: String(items[0]?.quoteBreak ?? "").trim(),
+    paragraphs: richTextToParagraphs(items[0]?.text),
+  };
 }

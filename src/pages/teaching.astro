@@ -4,33 +4,143 @@ import Picture from "../components/Picture.astro";
 import { getPhilosophy } from "../lib/content";
 
 const philosophy = await getPhilosophy();
+
+const paragraphs = philosophy.paragraphs;
+const split = paragraphs.length > 1 ? -1 : paragraphs.length;
+const beforePhoto = paragraphs.slice(0, split);
+const afterPhoto = paragraphs.slice(split);
+
+// Quote marks are added by the page, so strip any typed into the CMS field.
+const quoteBreak = philosophy.quoteBreak.replace(/^["“]+|["”]+$/g, "").trim();
+
+const steps = [
+  {
+    title: "Send a request",
+    text: "Tell me about your playing, your goals, and a few times that work for you.",
+  },
+  {
+    title: "Take a first lesson",
+    text: "We play, talk, and work out what to focus on first.",
+  },
+  {
+    title: "Settle into a schedule",
+    text: "Continue monthly or weekly, whichever suits you.",
+  },
+];
 ---
 
 <Layout
   title="Teaching"
-  description="Private trumpet lessons with Robert Collins. Individual, monthly, and yearly lesson plans, with a free lesson for prospective students."
+  description="Private trumpet lessons with Robert Collins, built on strong fundamentals, musicality, and an approach shaped to each student."
 >
-  <div class="mx-auto flex max-w-screen-lg flex-col gap-8 p-4">
-    <h1 class="text-center text-5xl font-bold">Teaching</h1>
-
-    <div
-      class="bg-base-200 border-base-300 rounded-box flex flex-col gap-6 border p-5 shadow-xl sm:p-8 md:flex-row"
-    >
+  <section
+    class="relative isolate grid md:min-h-[min(62vh,40rem)] md:grid-cols-[1fr_1.1fr]"
+  >
+    <div class="relative aspect-[4/3] md:order-2 md:aspect-auto">
       <Picture
-        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393753/Robbie/robbie4-5_fstxmo.jpg"
-        alt="Robert Collins, professional headshot"
-        blur="/blur/robbie4-5Blur.jpg"
-        width={400}
-        height={500}
-        sizes="(min-width: 768px) 400px, 100vw"
-        class="h-fit w-full rounded md:w-2/5"
+        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393807/Robbie/closeUp_tpb3ve.jpg"
+        alt="Robert Collins playing trumpet, eyes closed"
+        blur="/blur/closeUpBlur.jpg"
+        loading="eager"
+        fetchpriority="high"
+        sizes="(min-width: 768px) 55vw, 100vw"
+        class="absolute inset-0 h-full w-full object-cover object-[60%_20%]"
       />
-      {
-        /* The original wrapper here was <di>, a typo that silently dropped the layout. */
-      }
-      <div class="flex w-full flex-col gap-4 leading-8">
-        {philosophy.paragraphs.map((text) => <p class="font-thin">{text}</p>)}
+      <div
+        class="from-base-100 absolute inset-0 bg-gradient-to-t to-transparent to-40% md:bg-gradient-to-r md:to-30%"
+      >
       </div>
     </div>
-  </div>
+
+    <div
+      class="relative z-10 flex flex-col justify-center gap-8 px-4 pb-12 sm:px-8 md:order-1 md:py-16 md:pr-0 md:pl-[max(2rem,calc((100vw-64rem)/2))]"
+    >
+      <h1
+        class="text-primary -mt-16 text-[clamp(4rem,13vw,9.5rem)] leading-[0.85] tracking-tight md:mt-0 md:-mr-40"
+      >
+        Teaching
+      </h1>
+      {
+        philosophy.subtitle && (
+          <p class="max-w-md text-2xl leading-snug sm:text-3xl">
+            {philosophy.subtitle}
+          </p>
+        )
+      }
+      <a
+        href="/lessons"
+        class="btn bg-primary text-primary-content self-start border-none px-6 text-base hover:bg-white"
+      >
+        Request a lesson
+      </a>
+    </div>
+  </section>
+
+  <article class="mx-auto max-w-[44rem] px-4 py-10 text-lg leading-8 sm:py-24">
+    <Picture
+      src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393753/Robbie/robbie4-5_fstxmo.jpg"
+      alt="Robert Collins, portrait"
+      blur="/blur/robbie4-5Blur.jpg"
+      width={400}
+      height={500}
+      widths={[280, 400, 640]}
+      sizes="(min-width: 640px) 240px, 60vw"
+      class="mx-auto mb-8 w-3/5 rounded sm:float-right sm:mt-2 sm:mb-4 sm:ml-8 sm:w-60"
+    />
+
+    {
+      beforePhoto.map((text, i) => (
+        <>
+          <p class="mb-6">{text}</p>
+          {i === 0 && quoteBreak && (
+            <blockquote class="text-primary clear-both my-12 -indent-[0.4em] text-2xl leading-snug sm:text-3xl">
+              “{quoteBreak}”
+            </blockquote>
+          )}
+        </>
+      ))
+    }
+
+    <figure class="clear-both my-12 sm:-mx-16">
+      <Picture
+        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393818/Robbie/baroqueDuet_lcnzjo.jpg"
+        alt="Robert Collins playing baroque trumpet with a bassoonist and harpsichordist"
+        blur="/blur/baroqueDuetBlur.jpg"
+        width={1400}
+        height={933}
+        sizes="(min-width: 640px) 48rem, 100vw"
+        class="aspect-[2/1] w-full rounded object-cover object-[center_60%]"
+      />
+    </figure>
+
+    {afterPhoto.map((text) => <p class="mb-6">{text}</p>)}
+  </article>
+
+  <section class="bg-base-200 border-base-300 border-t">
+    <div class="mx-auto max-w-[44rem] px-4 py-16 sm:py-20">
+      <h2 class="text-primary mb-10 text-4xl">Getting started</h2>
+      <ol class="border-primary/40 ml-3 border-l">
+        {
+          steps.map((step, i) => (
+            <li class="relative pb-10 pl-10 last:pb-0">
+              <span
+                class="bg-base-200 text-primary absolute top-0 -left-3 w-6 text-center text-xl leading-7"
+                aria-hidden="true"
+              >
+                {i + 1}
+              </span>
+              <h3 class="text-xl leading-7">{step.title}</h3>
+              <p class="mt-1 leading-7 opacity-75">{step.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <a
+        href="/lessons"
+        class="btn bg-primary text-primary-content mt-12 border-none px-6 text-base hover:bg-white"
+      >
+        Request a lesson
+      </a>
+    </div>
+  </section>
 </Layout>
