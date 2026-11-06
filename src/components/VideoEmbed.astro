@@ -1,0 +1,104 @@
+---
+import Picture from "./Picture.astro";
+
+interface Props {
+  videoId: string;
+  title: string;
+  /** Load the thumbnail right away (for the first video on the page). */
+  eager?: boolean;
+}
+
+const { videoId, title, eager = false } = Astro.props;
+
+const watchUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+// Not every video has every thumbnail size, so try the sharpest first and
+// fall back; the client script below handles the fallback.
+const sizes = eager
+  ? ["maxresdefault", "sddefault", "hqdefault"]
+  : ["sddefault", "hqdefault"];
+const [thumbnail, ...fallbacks] = sizes.map(
+  (name) => `https://i.ytimg.com/vi/${videoId}/${name}.jpg`,
+);
+---
+
+<div
+  class="video-embed bg-base-200 relative aspect-video w-full overflow-hidden rounded"
+  data-video-id={videoId}
+  data-title={title}
+  data-fallbacks={fallbacks.join(" ")}
+>
+  <a
+    href={watchUrl}
+    class="video-play group absolute inset-0 block"
+    aria-label={`Play video: ${title}`}
+  >
+    <Picture
+      src={thumbnail}
+      alt=""
+      width={eager ? 1280 : 640}
+      height={eager ? 720 : 480}
+      widths={[eager ? 1280 : 640]}
+      sizes="(min-width: 768px) 50vw, 100vw"
+      loading={eager ? "eager" : "lazy"}
+      class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03] motion-reduce:transition-none"
+    />
+    <span
+      class="absolute inset-0 bg-black/20 transition-colors duration-300 group-hover:bg-black/0"
+    ></span>
+    <span
+      class="bg-primary text-primary-content absolute top-1/2 left-1/2 flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full shadow-lg transition-transform duration-300 group-hover:scale-110 group-focus-visible:scale-110 motion-reduce:transition-none sm:h-20 sm:w-20"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 24 24" class="h-7 w-7 sm:h-8 sm:w-8" fill="currentColor"
+        ><path
+          d="M8 5.14v13.72a1 1 0 0 0 1.5.86l11.04-6.86a1 1 0 0 0 0-1.72L9.5 4.28A1 1 0 0 0 8 5.14Z"
+        ></path></svg
+      >
+    </span>
+  </a>
+</div>
+
+<script>
+  // Swap the thumbnail for the real player on click, so YouTube's scripts
+  // only load for videos someone actually plays.
+  // A missing YouTube thumbnail still "loads" as a 120x90 gray image, so
+  // treat that (or an error) as missing and step down to the next size.
+  function useFallbacks(embed: HTMLElement) {
+    const img = embed.querySelector<HTMLImageElement>("img");
+    const queue = (embed.dataset.fallbacks ?? "").split(" ").filter(Boolean);
+    if (!img || queue.length === 0) return;
+
+    const check = () => {
+      const missing = img.complete && img.naturalWidth <= 120;
+      if (!missing || queue.length === 0) {
+        img.dataset.loaded = "";
+        return;
+      }
+      delete img.dataset.loaded;
+      img.srcset = "";
+      img.src = queue.shift()!;
+    };
+
+    img.addEventListener("load", check);
+    img.addEventListener("error", check);
+    if (img.complete) check();
+  }
+
+  for (const embed of document.querySelectorAll<HTMLElement>(".video-embed")) {
+    useFallbacks(embed);
+    const link = embed.querySelector<HTMLAnchorElement>(".video-play");
+    link?.addEventListener("click", (event) => {
+      event.preventDefault();
+      const iframe = document.createElement("iframe");
+      iframe.src = `https://www.youtube-nocookie.com/embed/${embed.dataset.videoId}?autoplay=1`;
+      iframe.title = embed.dataset.title ?? "Video";
+      iframe.allow =
+        "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      iframe.className = "absolute inset-0 h-full w-full";
+      link.replaceWith(iframe);
+      iframe.focus();
+    });
+  }
+</script>
