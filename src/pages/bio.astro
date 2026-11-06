@@ -13,65 +13,110 @@ const heroImage =
 
 const description =
   header.slice(0, 155) || "About Robert Collins, trumpet player and teacher.";
+
+// The text splits halfway through the sections, with a row of three photos
+// between the halves. The remaining photos go in the gallery at the end.
+const half = Math.ceil(sections.length / 2);
+const firstHalf = sections.slice(0, half).flatMap((s) => s.paragraphs);
+const secondHalf = sections.slice(half).flatMap((s) => s.paragraphs);
+const images = sections.flatMap((s) => (s.image ? [s.image] : []));
+const showRow = secondHalf.length > 0 && images.length > 0;
+const rowImages = showRow ? images.slice(0, 3) : [];
+const galleryImages = showRow ? images.slice(3) : images;
 ---
 
 <Layout title="Bio" description={description}>
   <section
-    class="relative isolate flex min-h-screen items-center justify-center"
+    class="relative isolate grid md:min-h-[min(62vh,40rem)] md:grid-cols-[1.1fr_1fr]"
   >
-    <Picture
-      src={heroImage}
-      alt="Robert Collins, close up, holding a trumpet"
-      blur="/blur/robbieBlur.jpg"
-      loading="eager"
-      fetchpriority="high"
-      sizes="100vw"
-      class="absolute inset-0 -z-20 h-full w-full object-cover"
-    />
-    <div class="absolute inset-0 -z-10 bg-gray-800/50"></div>
+    <div class="relative aspect-[4/3] md:aspect-auto">
+      <Picture
+        src={heroImage}
+        alt="Robert Collins playing trumpet on stage"
+        blur="/blur/robbieBlur.jpg"
+        loading="eager"
+        fetchpriority="high"
+        sizes="(min-width: 768px) 55vw, 100vw"
+        class="absolute inset-0 h-full w-full object-cover object-[center_25%]"
+      />
+      <div
+        class="from-base-100 absolute inset-0 bg-gradient-to-t to-transparent to-40% md:bg-gradient-to-l md:to-30%"
+      >
+      </div>
+    </div>
 
-    <div class="mx-4 max-w-2xl bg-black/75 p-6 text-center">
-      <h1 class="text-primary mb-2 text-5xl font-bold">About me</h1>
-      {header && <p class="mb-4 text-2xl font-thin">{header}</p>}
+    <div
+      class="relative z-10 flex flex-col justify-center gap-6 px-4 pb-12 sm:px-8 md:py-16 md:pr-[max(2rem,calc((100vw-64rem)/2))] md:pl-0"
+    >
+      <h1
+        class="text-primary -mt-14 text-[clamp(3.5rem,11vw,8rem)] leading-[0.85] tracking-tight md:mt-0 md:-ml-32"
+      >
+        About me
+      </h1>
+      {header && <p class="max-w-xl text-lg leading-8 sm:text-xl">{header}</p>}
       <a
         href="/contact"
-        class="btn bg-primary text-primary-content rounded-lg text-base font-normal hover:border-white hover:bg-black/75 hover:text-white"
+        class="btn bg-primary text-primary-content self-start border-none px-6 text-base hover:bg-white"
       >
-        Contact Me
+        Contact me
       </a>
     </div>
   </section>
 
-  <div
-    class="mx-auto flex max-w-screen-xl flex-col items-center justify-center"
-  >
+  <article class="mx-auto max-w-[44rem] px-4 py-12 text-lg leading-8 sm:py-20">
+    {firstHalf.map((text) => <p class="mb-6">{text}</p>)}
+
     {
-      sections.map((section, index) => (
-        <article
-          class:list={[
-            "p-10 md:flex md:items-center",
-            index % 2 === 1 ? "bg-black/75" : "bg-black/25 md:flex-row-reverse",
-          ]}
-        >
-          {section.image && (
-            <div class="md:w-1/2">
-              <Picture
-                src={section.image.url}
-                alt={section.image.alt}
-                width={section.image.width}
-                height={section.image.height}
-                sizes="(min-width: 768px) 50vw, 100vw"
-                class="h-auto w-full rounded"
-              />
-            </div>
-          )}
-          <div class="p-4 md:w-full">
-            {section.paragraphs.map((text) => (
-              <p class="pb-3 text-xl font-thin last:pb-0">{text}</p>
-            ))}
-          </div>
-        </article>
-      ))
+      showRow && (
+        <div class="-mx-4 my-12 flex snap-x snap-mandatory scroll-px-4 [scrollbar-width:none] gap-3 overflow-x-auto px-4 sm:-mx-16 sm:grid sm:auto-cols-fr sm:grid-flow-col sm:overflow-visible sm:px-0">
+          {rowImages.map((image) => (
+            <Picture
+              src={image.url}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              sizes="(min-width: 640px) 18rem, 80vw"
+              class="aspect-[4/3] w-[80%] shrink-0 snap-start rounded object-cover sm:w-full"
+            />
+          ))}
+        </div>
+      )
     }
-  </div>
+
+    {secondHalf.map((text) => <p class="mb-6">{text}</p>)}
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a
+        href="/lessons"
+        class="btn bg-primary text-primary-content border-none px-6 text-base hover:bg-white"
+      >
+        Request a lesson
+      </a>
+      <a
+        href="/recordings"
+        class="btn border-primary text-primary hover:bg-primary hover:text-primary-content bg-transparent px-6 text-base"
+      >
+        Listen to recordings
+      </a>
+    </div>
+  </article>
+
+  {
+    galleryImages.length > 0 && (
+      <section class="bg-base-200 border-base-300 border-t" aria-label="Photos">
+        <div class="mx-auto max-w-screen-lg columns-1 gap-4 px-4 py-12 sm:columns-2 sm:px-8 sm:py-16 lg:columns-3">
+          {galleryImages.map((image) => (
+            <Picture
+              src={image.url}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+              class="mb-4 h-auto w-full break-inside-avoid rounded"
+            />
+          ))}
+        </div>
+      </section>
+    )
+  }
 </Layout>
