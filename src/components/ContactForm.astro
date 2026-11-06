@@ -1,103 +1,73 @@
 ---
-import Picture from "../components/Picture.astro";
-
 const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
 ---
 
-<div class="flex justify-center py-3">
-  <div
-    class="bg-base-200 border-base-300 rounded-box w-full max-w-3xl border shadow-xl"
-  >
-    <figure class="px-10 pt-10 text-center">
-      <Picture
-        src="https://res.cloudinary.com/dwbwyzsyp/image/upload/v1687393780/Robbie/contact_ryqj3w.jpg"
-        alt="Robert Collins holding a trumpet"
-        blur="/blur/contactBlur.jpg"
-        width={400}
-        height={600}
-        sizes="(min-width: 768px) 400px, 90vw"
-        class="mx-auto h-auto w-full max-w-sm rounded"
+<form
+  id="contact-form"
+  class="bg-base-200 border-base-300 rounded-box border p-5 shadow-xl sm:p-8"
+  novalidate
+>
+  <div class="grid gap-5 sm:grid-cols-2">
+    <div>
+      <label class="mb-2 block" for="name">Name</label>
+      <input
+        id="name"
+        type="text"
+        name="name"
+        maxlength="100"
+        autocomplete="name"
+        placeholder="Your name"
+        class="input input-bordered w-full bg-white text-black"
+        required
       />
-    </figure>
+    </div>
 
-    <div class="flex flex-col items-center p-6">
-      <h2 class="text-center text-2xl font-thin">Contact me here:</h2>
+    <div>
+      <label class="mb-2 block" for="email">Email</label>
+      <input
+        id="email"
+        type="email"
+        name="email"
+        maxlength="200"
+        autocomplete="email"
+        placeholder="you@example.com"
+        class="input input-bordered w-full bg-white text-black"
+        required
+      />
+    </div>
 
-      <form
-        id="contact-form"
-        class="bg-base-100 mt-6 flex w-full flex-col items-center rounded-xl px-4 py-4 md:w-4/5"
-        novalidate
-      >
-        <div class="flex w-full flex-col gap-3 md:w-3/4">
-          <div>
-            <label class="block font-thin" for="name">Name:</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              maxlength="100"
-              autocomplete="name"
-              placeholder="Type your name here"
-              class="input input-bordered w-full bg-white font-thin text-black"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block font-thin" for="email">Email:</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              maxlength="200"
-              autocomplete="email"
-              placeholder="Type your email here"
-              class="input input-bordered w-full bg-white font-thin text-black"
-              required
-            />
-          </div>
-
-          <div>
-            <label class="block font-thin" for="message">Message:</label>
-            <textarea
-              id="message"
-              name="message"
-              maxlength="5000"
-              placeholder="Type your message here"
-              class="textarea textarea-bordered h-40 w-full bg-white font-thin text-black"
-              required></textarea>
-          </div>
-
-          <div class="flex justify-center py-2">
-            <div
-              class="cf-turnstile"
-              data-sitekey={siteKey}
-              data-theme="dark"
-              data-appearance="interaction-only"
-            >
-            </div>
-          </div>
-
-          <p
-            id="form-status"
-            class="hidden text-center"
-            role="status"
-            aria-live="polite"
-          >
-          </p>
-
-          <button
-            id="submit-button"
-            type="submit"
-            class="btn bg-primary text-primary-content place-self-center border-none hover:bg-black/75 hover:text-white md:w-1/2"
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+    <div class="sm:col-span-2">
+      <label class="mb-2 block" for="message">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        maxlength="5000"
+        placeholder="What would you like to talk about?"
+        class="textarea textarea-bordered min-h-36 w-full bg-white text-black"
+        required></textarea>
     </div>
   </div>
-</div>
+
+  <div class="flex justify-center py-4">
+    <div
+      class="cf-turnstile"
+      data-sitekey={siteKey}
+      data-theme="dark"
+      data-appearance="interaction-only"
+    >
+    </div>
+  </div>
+
+  <p id="form-status" class="hidden" role="status" aria-live="polite"></p>
+
+  <button
+    id="submit-button"
+    type="submit"
+    class="btn bg-primary text-primary-content w-full border-none px-6 text-base hover:bg-white sm:w-auto"
+  >
+    Send message
+  </button>
+</form>
 
 <script
   is:inline
@@ -118,7 +88,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
     if (!status) return;
     status.textContent = message;
     status.className = [
-      "mt-2 rounded p-3 text-center",
+      "mb-4 rounded p-3 text-center",
       tone === "success" && "bg-success text-success-content",
       tone === "error" && "bg-error text-error-content",
       tone === "info" && "opacity-80",
@@ -174,7 +144,7 @@ const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       const body = await response.json().catch(() => ({}));
 
       if (response.ok) {
-        show("Success! Your message has been sent.", "success");
+        show("Thanks! Your message has been sent.", "success");
         form.reset();
         button.removeAttribute("aria-busy");
         // Leave the button disabled so a success cannot be double-submitted.
